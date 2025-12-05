@@ -1,7 +1,7 @@
 import FeaturedTours from '@/components/modules/Home/FeaturedTours';
 import Hero from '@/components/modules/Home/Hero';
 import TopDestinations from '@/components/modules/Home/TopDestinations';
-import React from 'react';
+import WhyChooseUs from '@/components/modules/Home/WhyChooseUs';
 
 export default function HomePage() {
     return (
@@ -9,6 +9,7 @@ export default function HomePage() {
             <Hero></Hero>
             <TopDestinations></TopDestinations>
             <FeaturedTours></FeaturedTours>
+            <WhyChooseUs></WhyChooseUs>
         </div>
     );
 };
