@@ -159,10 +159,11 @@ import PhoneInput from "@/components/shared/Form/PhoneInput";
 import { countries } from "@/constants/countries";
 import { ActionResponse } from "@/types/response.interface";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { TUserRole } from "@/types/user.interface";
 
 interface RegisterFormProps {
     action: (formData: FormData) => Promise<ActionResponse>;
-    role: "GUIDE" | "TOURIST";
+    role: TUserRole.TOURIST | TUserRole.GUIDE;
 }
 
 export default function RegisterForm({ action, role }: RegisterFormProps) {
@@ -192,7 +193,7 @@ export default function RegisterForm({ action, role }: RegisterFormProps) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <FieldGroup>
+            <FieldGroup className="gap-4">
                 <Field>
                     <FieldLabel htmlFor="firstName">First Name</FieldLabel>
                     <Input
@@ -263,7 +264,7 @@ export default function RegisterForm({ action, role }: RegisterFormProps) {
                     <InputFieldError field="phone" state={state} />
                 </Field>
 
-                {role === "GUIDE" && (
+                {role === TUserRole.GUIDE && (
                     <Field>
                         <FieldLabel htmlFor="occupation">Occupation</FieldLabel>
                         <Input

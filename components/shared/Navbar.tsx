@@ -53,7 +53,7 @@ const Navbar = async () => {
                 <div className="hidden md:flex items-center space-x-3">
                     {!userRole ? (
                         <>
-                            <Link href="/register">
+                            <Link href="/register/tourist">
                                 <Button
                                     variant="outline"
                                     className="rounded-xl px-7 text-[14px] border-blue-700 text-blue-600 hover:bg-blue-50">

@@ -62,9 +62,7 @@ export const registerGuideSchema = registerBaseUserSchema.safeExtend({
                 : "occupation Must Be a String"
         })
         .min(2, { message: "occupation is Required" })
-        .max(16, { message: "occupation is Too Long" }),
-
-    // role: z.enum(TUserRole).default(TUserRole.GUIDE),
+        .max(16, { message: "occupation is Too Long" })
 });
 
 export const registerTouristSchema = registerBaseUserSchema.safeExtend({
