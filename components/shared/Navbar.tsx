@@ -25,7 +25,7 @@ const Navbar = async () => {
 
     return (
         <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
-            <div className="mx-auto max-w-[1250px] h-[80px] flex items-center justify-between px-6">
+            <div className="mx-auto max-w-[1250px] h-[60px] flex items-center justify-between px-6">
 
                 {/* Left: Logo */}
                 <Link href="/" className="text-[22px] font-bold text-blue-600">
