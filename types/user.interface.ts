@@ -13,19 +13,13 @@ export enum TUserStatus {
     BLOCKED = "BLOCKED"
 }
 
-export interface IUserInfo {
-    firstName: string,
-    email: string;
-    role?: TUserRole;
-    profileImage?: string;
-}
 
 export interface IUser {
     _id?: string;
     firstName: string;
     lastName?: string;
     email: string;
-    password: string;
+    password?: string;
     profileImage?: string;
     bio?: string;
     phone?: string;
