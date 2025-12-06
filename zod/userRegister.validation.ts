@@ -1,0 +1,72 @@
+import { z } from "zod";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
+
+
+export const registerBaseUserSchema = z.object({
+    firstName: z
+        .string({
+            error: (issue) => issue.input === undefined
+                ? "Name is Required"
+                : "Name Must Be a String"
+        })
+        .min(3, { message: "Name Must Be Atleast 3 Characters Long" })
+        .max(50, { message: "Name is Too Long" }),
+
+    lastName: z
+        .string({ error: "LastName Must Be String" })
+        .max(200, { message: "lastName Cannot Exceed 8 Characters" })
+        .optional(),
+
+    email: z
+        .email({ message: "Invalid Email Address Format" })
+        .regex(
+            /^(?!\.)(?!.*\.\.)([a-z0-9_'+\-\.]*)[a-z0-9_+-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$/i,
+            { message: "Invalid Email Address Format" }
+        )
+        .transform((val) => val.toLowerCase()),
+
+    password: z
+        .string({
+            error: (issue) => issue.input === undefined
+                ? "Password is Required"
+                : "Password Must Be a String"
+        })
+        .min(8, { message: "Password Must Be At Least 8 Characters Long" })
+        .regex(/^(?=.*[A-Z])/, { message: "Password Must Contain At Least 1 Uppercase Letter" })
+        .regex(/^(?=.*[!@#$%^&*])/, { message: "Password Must Contain At Least 1 Special Character" })
+        .regex(/^(?=.*\d)/, { message: "Password Must Contain At Least 1 Number" }),
+
+    confirmPassword: z.string(),
+
+    country: z.string().min(2, "Country is required"),
+
+    phone: z
+        .string()
+        .min(1, "Phone number is required")
+        .refine((value) => {
+            const phone = parsePhoneNumberFromString(value);
+            return phone?.isValid();
+        }, "Invalid phone number in international format (e.g., +14155552671)")
+
+}).refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Passwords do not match",
+});
+
+
+export const registerGuideSchema = registerBaseUserSchema.safeExtend({
+    occupation: z
+        .string({
+            error: (issue) => issue.input === undefined
+                ? "occupation is Required"
+                : "occupation Must Be a String"
+        })
+        .min(2, { message: "occupation is Required" })
+        .max(16, { message: "occupation is Too Long" }),
+
+    // role: z.enum(TUserRole).default(TUserRole.GUIDE),
+});
+
+export const registerTouristSchema = registerBaseUserSchema.safeExtend({
+    // role: z.enum(TUserRole).default(TUserRole.TOURIST),
+});

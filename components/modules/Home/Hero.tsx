@@ -8,6 +8,7 @@ import { HeroProps } from "@/types/heroProps";
 import bgImage from "../../../assets/images/banner2.jpg"
 import bdImage from "../../../assets/images/bd-map.png"
 import Image from "next/image";
+import Link from "next/link";
 
 // HOMEPAGE BANNER PROPS ---------
 const defaultProps: HeroProps = {
@@ -107,12 +108,14 @@ export default function Hero(props: HeroProps = defaultProps) {
                     )}
 
                     {buttons?.secondary && (
-                        <Button
-                            variant="outline"
-                            className="px-8 py-6 text-[17px] font-semibold text-white bg-white/20 border border-white"
-                        >
-                            {buttons.secondary.text}
-                        </Button>
+                        <Link href={'/register/guide'}>
+                            <Button
+                                variant="outline"
+                                className="px-8 py-6 text-[17px] font-semibold text-white bg-white/20 border border-white"
+                            >
+                                {buttons.secondary.text}
+                            </Button>
+                        </Link>
                     )}
                 </motion.div>
 

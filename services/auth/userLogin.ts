@@ -33,6 +33,7 @@ export const userLogin = async (_currentState: any, formData: any): Promise<any>
             return zodValidatorRequest(payload, userLoginSchema);
         }
         const validatedPayload = zodValidatorRequest(payload, userLoginSchema).data;
+        console.log('from login action function: ', validatedPayload);
 
 
         // --------- DATA FETCH REQUEST & RESPONSE

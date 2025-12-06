@@ -4,10 +4,12 @@ import { IInputErrorState } from "@/types/inputError.interface";
 
 interface InputFieldErrorProps {
     field: string;
-    state: IInputErrorState;
+    state: IInputErrorState | null;
 }
 
 const InputFieldError = ({ field, state }: InputFieldErrorProps) => {
+    if (!state || !state.errors) return null;
+    
     if (getInputFieldError(field, state)) {
         return (
             <FieldDescription className="text-red-600">

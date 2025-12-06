@@ -1,6 +1,6 @@
 export interface IInputErrorState {
     success: boolean;
-    errors: {
+    errors?: {
         field: string;
         message: string;
     }[];
