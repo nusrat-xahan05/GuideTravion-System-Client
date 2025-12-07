@@ -61,7 +61,7 @@ export const registerGuideSchema = registerBaseUserSchema.safeExtend({
                 : "occupation Must Be a String"
         })
         .min(2, { message: "occupation is Required" })
-        .max(16, { message: "occupation is Too Long" })
+        .max(30, { message: "occupation is Too Long" })
 });
 
 export const registerTouristSchema = registerBaseUserSchema.safeExtend({
@@ -121,7 +121,7 @@ export const updateGuideSchema = updateBaseUserSchema.extend({
                 : "occupation Must Be a String"
         })
         .min(2, { message: "occupation is Required" })
-        .max(16, { message: "occupation is Too Long" }),
+        .max(30, { message: "occupation is Too Long" }),
     city: z
         .string({
             error: (issue) => issue.input === undefined
@@ -132,7 +132,16 @@ export const updateGuideSchema = updateBaseUserSchema.extend({
         .max(16, { message: "City is Too Long" })
         .optional(),
     expertise: z.array(z.string()),
-    yearsOfExperience: z.number().optional(),
-    hourlyRate: z.number().optional(),
-    dailyRate: z.number().optional(),
+    yearsOfExperience: z.coerce
+        .number()
+        .min(0, { message: "Experience must be a Positive Number" })
+        .optional(),
+    hourlyRate: z.coerce
+        .number()
+        .min(0, { message: "Hourly Rate must be a Positive Number" })
+        .optional(),
+    dailyRate: z.coerce
+        .number()
+        .min(0, { message: "Daily Rate must be a Positive Number" })
+        .optional(),
 });

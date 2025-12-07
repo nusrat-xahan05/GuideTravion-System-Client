@@ -55,6 +55,7 @@ export async function updateMyProfile(
         if (userRole === TUserRole.TOURIST) {
             selectSchema = updateTouristSchema
         }
+
         // --------- FORM DATA ZOD VALIDATION
         if (zodValidatorRequest(raw, selectSchema).success === false) {
             return zodValidatorRequest(raw, selectSchema);
@@ -69,14 +70,10 @@ export async function updateMyProfile(
             uploadFormData.append("file", file);
         }
 
-        console.log('from update uploadFormData: ', uploadFormData);
-
         const response = await serverFetch.patch(`/user/update-profile`, {
             body: uploadFormData,
         });
-
         const result = await response.json();
-        console.log('from update result: ', result);
 
         // revalidate cache
         revalidateTag("user-info", { expire: 0 });
@@ -91,56 +88,17 @@ export async function updateMyProfile(
 }
 
 
-
-// export async function updateMyProfile(_prevState: any, formData: FormData): Promise<ActionResponse> {
-//     try {
-//         const uploadFormData = new FormData();
-
-//         const data: any = {};
-//         formData.forEach((value, key) => {
-//             if (key !== 'file' && value) {
-//                 data[key] = value;
-//             }
-//         });
-//         uploadFormData.append('data', JSON.stringify(data));
-
-//         const file = formData.get('file');
-//         if (file && file instanceof File && file.size > 0) {
-//             uploadFormData.append('file', file);
-//         }
-
-//         console.log('from update uploadFormData: ', uploadFormData);
-
-//         const response = await serverFetch.patch(`/user/update-profile`, {
-//             body: uploadFormData,
-//         });
-
-//         const result = await response.json();
-//         console.log('from update result: ', result);
-
-//         revalidateTag("user-info", { expire: 0 });
-//         return result;
-//     } catch (error: any) {
-//         console.log(error);
-//         return {
-//             success: false,
-//             message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
-//         };
-//     }
-// }
-
-
-
 export async function sendGuideVerificationRequest(_prevState: any, formData: FormData): Promise<ActionResponse> {
     try {
-        // parse formData for needed values (like userId)
-        const obj = Object.fromEntries(formData);
-        // Example: check required field
-        // implement backend call to create verification request
-        return {
-            success: true,
-            message: "Verification request submitted successfully",
-        };
+        const response = await serverFetch.post(`/user/send-verify`, {
+            body: '',
+        });
+
+        const result = await response.json();
+        console.log('fron send request status: ', result);
+        // revalidate cache
+        revalidateTag("user-info", { expire: 0 });
+        return result;
     } catch (err: any) {
         return {
             success: false,
