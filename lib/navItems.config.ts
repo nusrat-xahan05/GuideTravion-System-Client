@@ -19,13 +19,13 @@ export const getCommonNavItems = (role: UserRole): NavSection[] => {
                 },
                 {
                     title: "My Profile",
-                    href: "/dashboard/my-profile",
+                    href: "/my-profile",
                     icon: "User",
                     roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
                 },
                 {
                     title: "Notifications",
-                    href: "/dashboard/notifications",
+                    href: "/notifications",
                     icon: "Bell",
                     roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
                 },
@@ -37,19 +37,19 @@ export const getCommonNavItems = (role: UserRole): NavSection[] => {
             items: [
                 {
                     title: "Settings",
-                    href: "/dashboard/settings",
+                    href: "/settings",
                     icon: "Settings",
                     roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
                 },
                 {
                     title: "Security",
-                    href: "/dashboard/security",
+                    href: "/security",
                     icon: "Shield",
                     roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
                 },
                 {
                     title: "Help Center",
-                    href: "/dashboard/help",
+                    href: "/help",
                     icon: "HelpCircle",
                     roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
                 },

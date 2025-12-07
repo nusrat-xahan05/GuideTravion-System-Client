@@ -61,7 +61,7 @@
 
 import { serverFetch } from "@/lib/server-fetch";
 import { zodValidatorRequest } from "@/lib/zodValidateRequest";
-import { registerGuideSchema } from "@/zod/userRegister.validation";
+import { registerGuideSchema } from "@/zod/user.validation";
 import { userLogin } from "./userLogin";
 import { ActionResponse } from "@/types/response.interface";
 

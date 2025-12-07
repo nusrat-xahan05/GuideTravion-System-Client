@@ -4,7 +4,7 @@
 
 import { serverFetch } from "@/lib/server-fetch";
 import { zodValidatorRequest } from "@/lib/zodValidateRequest";
-import { registerBaseUserSchema } from "@/zod/userRegister.validation";
+import { registerBaseUserSchema } from "@/zod/user.validation";
 import { userLogin } from "./userLogin";
 import { ActionResponse } from "@/types/response.interface";
 
