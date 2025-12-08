@@ -58,6 +58,7 @@ export interface IGuide extends IUser {
     dailyRate?: number;
     rating?: number;
     totalReviews?: number;
+    user?: IUser;
     // availability?: any[];
 }
 

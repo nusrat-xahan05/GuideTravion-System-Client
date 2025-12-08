@@ -194,13 +194,13 @@ export const adminNavItems: NavSection[] = [
         items: [
             {
                 title: "All Guides",
-                href: "/admin/dashboard/guides",
+                href: "/admin/dashboard/guides-management",
                 icon: "Users",
                 roles: [TUserRole.ADMIN],
             },
             {
-                title: "All Tourists",
-                href: "/admin/dashboard/tourists",
+                title: "All Tourist",
+                href: "/admin/dashboard/tourist-management",
                 icon: "UserPlus",
                 roles: [TUserRole.ADMIN],
             },
