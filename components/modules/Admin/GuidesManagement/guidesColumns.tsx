@@ -14,8 +14,13 @@ export const guidesColumns: Column<IGuide>[] = [
         email={guide.user?.email}
         photo={guide.user?.profileImage as string}
       />
+    )
+  },
+  {
+    header: "City",
+    accessor: (guide) => (
+      <span className="text-sm capitalize">{guide.city}</span>
     ),
-    sortKey: "firstName",
   },
   {
     header: "Experience",
@@ -27,13 +32,13 @@ export const guidesColumns: Column<IGuide>[] = [
     sortKey: "experience",
   },
   {
-    header: "Fee",
+    header: "Daily Rate",
     accessor: (guide) => (
       <span className="text-sm font-semibold text-green-600">
         ${guide.dailyRate}
       </span>
     ),
-    sortKey: "appointmentFee",
+    sortKey: "dailyRate",
   },
   {
     header: "Rating",
@@ -46,12 +51,6 @@ export const guidesColumns: Column<IGuide>[] = [
       </div>
     ),
     sortKey: "rating",
-  },
-  {
-    header: "City",
-    accessor: (guide) => (
-      <span className="text-sm capitalize">{guide.city}</span>
-    ),
   },
   {
     header: "Verification",

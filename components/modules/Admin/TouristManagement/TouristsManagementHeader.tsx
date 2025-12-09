@@ -3,16 +3,15 @@
 import ManagementPageHeader from "@/components/shared/ManagementPage/ManagementPageHeader";
 
 
-  const GuidesManagementHeader = () => {
-
+const TouristsManagementHeader = () => {
   return (
     <>
       <ManagementPageHeader
-        title="Guides Management"
-        description="Manage Guides information and details"
+        title="Tourists Management"
+        description="Manage Tourists information and details"
       />
     </>
   );
 };
 
-export default GuidesManagementHeader;
+export default TouristsManagementHeader;

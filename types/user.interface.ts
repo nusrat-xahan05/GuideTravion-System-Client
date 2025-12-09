@@ -44,6 +44,7 @@ export interface ITourist extends IUser {
     preferredStyles?: string[];
     wishlistTours?: string[];
     bookings?: string[];
+    user?: IUser;
 }
 
 export interface IGuide extends IUser {

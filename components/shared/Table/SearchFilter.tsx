@@ -23,9 +23,7 @@ const SearchFilter = ({
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-
     const initialValue = searchParams.get(paramName) || "";
-
     if (debouncedValue === initialValue) {
       return;
     }
@@ -44,6 +42,12 @@ const SearchFilter = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue, paramName, router]);
 
+  useEffect(() => {
+    const currentValue = searchParams.get(paramName) || "";
+    setValue(currentValue);
+  }, [searchParams, paramName]);
+
+  
   return (
     <div className="relative">
       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />

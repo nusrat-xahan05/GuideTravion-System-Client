@@ -200,7 +200,7 @@ export const adminNavItems: NavSection[] = [
             },
             {
                 title: "All Tourist",
-                href: "/admin/dashboard/tourist-management",
+                href: "/admin/dashboard/tourists-management",
                 icon: "UserPlus",
                 roles: [TUserRole.ADMIN],
             },

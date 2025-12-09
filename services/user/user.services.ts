@@ -61,7 +61,6 @@ export async function updateMyProfile(
             return zodValidatorRequest(raw, selectSchema);
         }
         const validatedPayload = zodValidatorRequest(raw, selectSchema).data;
-        console.log('from login action function: ', validatedPayload);
 
 
         uploadFormData.append("data", JSON.stringify(validatedPayload));

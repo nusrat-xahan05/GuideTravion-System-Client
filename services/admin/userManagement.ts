@@ -8,7 +8,6 @@ import { IGuide, TUserStatus, TVerificationReqStatus } from "@/types/user.interf
 
 export async function getAllGuides(queryString?: string) {
     try {
-        console.log('From server function: ', queryString);
         const response = await serverFetch.get(`/user/all-guides${queryString ? `?${queryString}` : ""}`);
         const result = await response.json();
         return result;
@@ -20,6 +19,22 @@ export async function getAllGuides(queryString?: string) {
         };
     }
 }
+
+
+export async function getAllTourist(queryString?: string) {
+    try {
+        const response = await serverFetch.get(`/user/all-tourists${queryString ? `?${queryString}` : ""}`);
+        const result = await response.json();
+        return result;
+    } catch (error: any) {
+        console.log(error);
+        return {
+            success: false,
+            message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
+        };
+    }
+}
+
 
 export async function updateUser(id: string, _prevState: any, formData: FormData) {
     const payload: Partial<IGuide> = {

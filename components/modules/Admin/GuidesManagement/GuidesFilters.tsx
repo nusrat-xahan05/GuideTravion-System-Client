@@ -6,36 +6,62 @@ import SearchFilter from "@/components/shared/Table/SearchFilter";
 import SelectFilter from "@/components/shared/Table/SelectFilter";
 
 
-
 const GuidesFilters = () => {
   return (
     <div className="space-y-3">
-      {/* Row 1: Search and Refresh */}
-      <div className="flex items-center gap-3">
-        <SearchFilter paramName="searchTerm" placeholder="Search guides ..." />
+      {/* Row 1: Search + Refresh */}
+      <div className="flex items-center gap-3 flex-wrap">
+        <SearchFilter paramName="searchTerm" placeholder="Search by name or email..." />
         <RefreshButton />
       </div>
 
-      {/* Row 2: Filter Controls - All on same line */}
+      {/* Row 2: Filters */}
       <div className="flex items-center gap-3 flex-wrap">
-        {/* Gender Filter */}
+        {/* Verification Status */}
         <SelectFilter
-          paramName="gender"
-          placeholder="Gender"
-          defaultValue="All Genders"
+          paramName="verificationRequest"
+          placeholder="Verification Status"
+          defaultValue="All Verification Status"
           options={[
-            { label: "Male", value: "MALE" },
-            { label: "Female", value: "FEMALE" },
+            { label: "NOT_SEND", value: "NOT_SEND" },
+            { label: "PENDING", value: "PENDING" },
+            { label: "APPROVED", value: "APPROVED" },
+            { label: "REJECTED", value: "REJECTED" }
           ]}
         />
 
-        {/* Email Filter */}
-        <SearchFilter paramName="email" placeholder="Email" />
+        {/* User Status */}
+        <SelectFilter
+          paramName="userStatus"
+          placeholder="User Status"
+          defaultValue="All User Status"
+          options={[
+            { label: "ACTIVE", value: "ACTIVE" },
+            { label: "INACTIVE", value: "INACTIVE" },
+            { label: "BLOCKED", value: "BLOCKED" }
+          ]}
+        />
 
-        {/* Contact Number Filter */}
-        <SearchFilter paramName="contactNumber" placeholder="Contact" />
+        {/* City Filter */}
+        <SearchFilter paramName="city" placeholder="City" />
 
-        {/* Clear All Filters */}
+        {/* Sorting Options */}
+        <SelectFilter
+          paramName="sort"
+          placeholder="Sort By"
+          defaultValue="Sort By"
+          options={[
+            { label: "Daily Rate (Low → High)", value: "dailyRate" },
+            { label: "Daily Rate (High → Low)", value: "-dailyRate" },
+            { label: "Hourly Rate (Low → High)", value: "hourlyRate" },
+            { label: "Hourly Rate (High → Low)", value: "-hourlyRate" },
+            { label: "Experience (Low → High)", value: "yearsOfExperience" },
+            { label: "Experience (High → Low)", value: "-yearsOfExperience" },
+            { label: "Rating (Low → High)", value: "rating" },
+            { label: "Rating (High → Low)", value: "-rating" }
+          ]}
+        />
+
         <ClearFiltersButton />
       </div>
     </div>
@@ -43,3 +69,4 @@ const GuidesFilters = () => {
 };
 
 export default GuidesFilters;
+
