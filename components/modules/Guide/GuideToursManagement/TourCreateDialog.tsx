@@ -22,6 +22,7 @@ import { createTourAction } from "@/services/user/tour.services";
 import { useActionState } from "react";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
 import { TTourType, TTourDifficultyLevel } from "@/types/tour.interface";
+import { CircleMinus } from "lucide-react";
 
 type ItineraryDay = {
   day: number;
@@ -32,19 +33,19 @@ type ItineraryDay = {
   endTime?: string;
 };
 
-interface TourFormDialogProps {
+interface TourCreateDialogProps {
   open: boolean;
   onClose: () => void;
   onSuccess?: () => void;
   initial?: Partial<any>;
 }
 
-export default function TourFormDialog({
+export default function TourCreateDialog({
   open,
   onClose,
   onSuccess,
   initial,
-}: TourFormDialogProps) {
+}: TourCreateDialogProps) {
   const formRef = useRef<HTMLFormElement | null>(null);
   const imagesRef = useRef<HTMLInputElement | null>(null);
 
@@ -63,6 +64,9 @@ export default function TourFormDialog({
   const [highlights, setHighlights] = useState<string[]>(initial?.highlights ?? []);
   const [includesArr, setIncludesArr] = useState<string[]>(initial?.includes ?? []);
   const [excludesArr, setExcludesArr] = useState<string[]>(initial?.excludes ?? []);
+  const [pickupLocation, setPickupLocation] = useState(initial?.pickupLocation ?? "");
+  const [dropoffLocation, setDropoffLocation] = useState(initial?.dropoffLocation ?? "");
+  const [meetingTime, setMeetingTime] = useState(initial?.meetingTime ?? "");
 
   // TOUR TYPE: single select dropdown (you asked)
   const tourTypeValues = Object.values(TTourType);
@@ -131,6 +135,9 @@ export default function TourFormDialog({
         setRawImages([]);
         setTourType([]);
         setDifficulty("");
+        setPickupLocation("");
+        setDropoffLocation("");
+        setMeetingTime("");
       }, 0);
 
     } else {
@@ -236,13 +243,15 @@ export default function TourFormDialog({
       .filter(Boolean);
 
     addHidden("tourType", JSON.stringify(tourType));
-    // addHidden("tourType", JSON.stringify(tourType ? [tourType] : [])); // backend expects array (if your backend expects string, change accordingly)
     addHidden("difficultyLevel", difficulty ?? "");
     addHidden("tags", JSON.stringify(tagsArr));
     addHidden("highlights", JSON.stringify(highlights || []));
     addHidden("includes", JSON.stringify(includesArr || []));
     addHidden("excludes", JSON.stringify(excludesArr || []));
     addHidden("itinerary", JSON.stringify(itinerary || []));
+    addHidden("pickupLocation", pickupLocation);
+    addHidden("dropoffLocation", dropoffLocation);
+    addHidden("meetingTime", meetingTime);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -263,14 +272,14 @@ export default function TourFormDialog({
             {/* Title */}
             <Field>
               <FieldLabel htmlFor="title">Title</FieldLabel>
-              <Input id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+              <Input id="title" name="title" placeholder="Ahsan Manzil Museum Tour" value={title} onChange={(e) => setTitle(e.target.value)} required />
               <InputFieldError field="title" state={state} />
             </Field>
 
             {/* Description */}
             <Field>
               <FieldLabel htmlFor="description">Short Description</FieldLabel>
-              <textarea id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} className="border rounded p-2 w-full min-h-[100px]" />
+              <textarea id="description" name="description" placeholder="Discover the majestic ..." value={description} onChange={(e) => setDescription(e.target.value)} className="border rounded p-2 w-full min-h-[100px]" />
               <InputFieldError field="description" state={state} />
             </Field>
 
@@ -295,35 +304,70 @@ export default function TourFormDialog({
             </Field>
 
 
-
-
-
-            {/* Difficulty (single select) */}
-            <Field>
-              <FieldLabel>Difficulty</FieldLabel>
-              <Select onValueChange={(v) => setDifficulty(v)} value={difficulty}>
-                <SelectTrigger><SelectValue placeholder="Choose difficulty" /></SelectTrigger>
-                <SelectContent>
-                  {Object.values(TTourDifficultyLevel).map((d) => (
-                    <SelectItem key={d} value={d}>{d}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <InputFieldError field="difficultyLevel" state={state} />
-            </Field>
-
-            {/* Location/Division */}
+            {/* Difficulty (single select)  & Division*/}
             <div className="grid md:grid-cols-2 gap-4">
               <Field>
-                <FieldLabel htmlFor="location">Location</FieldLabel>
-                <Input id="location" name="location" value={location} onChange={(e) => setLocation(e.target.value)} />
-                <InputFieldError field="location" state={state} />
+                <FieldLabel>Difficulty</FieldLabel>
+                <Select onValueChange={(v) => setDifficulty(v)} value={difficulty}>
+                  <SelectTrigger><SelectValue placeholder="Choose difficulty" /></SelectTrigger>
+                  <SelectContent>
+                    {Object.values(TTourDifficultyLevel).map((d) => (
+                      <SelectItem key={d} value={d}>{d}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <InputFieldError field="difficultyLevel" state={state} />
               </Field>
 
               <Field>
                 <FieldLabel htmlFor="division">Division</FieldLabel>
-                <Input id="division" name="division" value={division} onChange={(e) => setDivision(e.target.value)} />
+                <Input id="division" name="division" placeholder="Dhaka" value={division} onChange={(e) => setDivision(e.target.value)} />
                 <InputFieldError field="division" state={state} />
+              </Field>
+            </div>
+
+
+            {/* Location & Meeting Time */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <Field>
+                <FieldLabel htmlFor="location">Location</FieldLabel>
+                <Input id="location" name="location" placeholder="Sadarghat, Dhaka" value={location} onChange={(e) => setLocation(e.target.value)} />
+                <InputFieldError field="location" state={state} />
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="meetingTime">Meeting Time</FieldLabel>
+                <Input
+                  id="meetingTime"
+                  name="meetingTime"
+                  type="time"
+                  value={meetingTime}
+                  onChange={(e) => setMeetingTime(e.target.value)}
+                />
+              </Field>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <Field>
+                <FieldLabel htmlFor="pickupLocation">Pickup Location</FieldLabel>
+                <Input
+                  id="pickupLocation"
+                  name="pickupLocation"
+                  value={pickupLocation}
+                  placeholder="TSC Center, DU"
+                  onChange={(e) => setPickupLocation(e.target.value)}
+                />
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="dropoffLocation">Dropoff Location</FieldLabel>
+                <Input
+                  id="dropoffLocation"
+                  name="dropoffLocation"
+                  value={dropoffLocation}
+                  placeholder="TSC Center, DU"
+                  onChange={(e) => setDropoffLocation(e.target.value)}
+                />
               </Field>
             </div>
 
@@ -361,7 +405,7 @@ export default function TourFormDialog({
                 {(highlights || []).map((h, i) => (
                   <div key={i} className="flex gap-2 items-center mt-2">
                     <Input value={h} onChange={(e) => updateArrayItem(setHighlights, i, e.target.value)} />
-                    <button type="button" className="text-red-500" onClick={() => removeArrayItemGeneric(setHighlights, i)}>Remove</button>
+                    <CircleMinus type="button" className="text-red-500" onClick={() => removeArrayItemGeneric(setHighlights, i)}></CircleMinus>
                   </div>
                 ))}
                 <div className="mt-2"><button type="button" className="text-sm text-blue-600" onClick={() => addArrayItem(setHighlights)}>+ Add Highlight</button></div>
@@ -373,7 +417,7 @@ export default function TourFormDialog({
                 {(includesArr || []).map((h, i) => (
                   <div key={i} className="flex gap-2 items-center mt-2">
                     <Input value={h} onChange={(e) => updateArrayItem(setIncludesArr, i, e.target.value)} />
-                    <button type="button" className="text-red-500" onClick={() => removeArrayItemGeneric(setIncludesArr, i)}>Remove</button>
+                    <CircleMinus type="button" className="text-red-500" onClick={() => removeArrayItemGeneric(setIncludesArr, i)}></CircleMinus>
                   </div>
                 ))}
                 <div className="mt-2"><button type="button" className="text-sm text-blue-600" onClick={() => addArrayItem(setIncludesArr)}>+ Add Include</button></div>
@@ -386,7 +430,7 @@ export default function TourFormDialog({
               {(excludesArr || []).map((h, i) => (
                 <div key={i} className="flex gap-2 items-center mt-2">
                   <Input value={h} onChange={(e) => updateArrayItem(setExcludesArr, i, e.target.value)} />
-                  <button type="button" className="text-red-500" onClick={() => removeArrayItemGeneric(setExcludesArr, i)}>Remove</button>
+                  <CircleMinus type="button" className="text-red-500" onClick={() => removeArrayItemGeneric(setExcludesArr, i)}></CircleMinus>
                 </div>
               ))}
               <div className="mt-2"><button type="button" className="text-sm text-blue-600" onClick={() => addArrayItem(setExcludesArr)}>+ Add Exclude</button></div>
@@ -407,7 +451,7 @@ export default function TourFormDialog({
                   <div className="flex items-center justify-between">
                     <div className="font-medium">Day {day.day}</div>
                     <div className="flex gap-2">
-                      <button type="button" onClick={() => removeDay(idx)} className="text-red-500">Remove Day</button>
+                      <CircleMinus type="button" onClick={() => removeDay(idx)} className="text-red-500"></CircleMinus>
                     </div>
                   </div>
 

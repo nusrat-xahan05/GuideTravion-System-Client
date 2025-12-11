@@ -39,7 +39,7 @@ interface TourFormDialogProps {
     initial?: Partial<any>;
 }
 
-export default function TourFormDialog({
+export default function TourFormDialog12({
     open,
     onClose,
     onSuccess,
@@ -66,18 +66,16 @@ export default function TourFormDialog({
 
     // TOUR TYPE: single select dropdown (you asked)
     const tourTypeValues = Object.values(TTourType);
-    // const [tourType, setTourType] = useState<string>(
-    //   Array.isArray(initial?.tourType) ? (initial!.tourType as string[])[0] ?? "" : (initial?.tourType as string) ?? ""
-    // );
-    const [tourType, setTourType] = useState<string[]>(
-        Array.isArray(initial?.tourType)
-            ? initial.tourType
-            : initial?.tourType
-                ? [initial.tourType]
-                : []
-    );
 
+    const [tourType, setTourType] = useState<string[]>([]);
 
+    const toggleTourType = (value: string) => {
+        setTourType(prev =>
+            prev.includes(value)
+                ? prev.filter(v => v !== value)
+                : [...prev, value]
+        );
+    };
 
     // difficulty single select
     const [difficulty, setDifficulty] = useState<string>(initial?.difficultyLevel ?? "");
@@ -97,11 +95,16 @@ export default function TourFormDialog({
         null
     );
 
+    const handledSuccess = useRef(false);
+
     // --- handle result: toast + close + optional reset (reset scheduled to avoid sync setState in effect) ---
     useEffect(() => {
         if (!state) return;
 
         if (state.success) {
+            if (handledSuccess.current) return; // ❌ prevents infinite toasts
+            handledSuccess.current = true;      // mark as handled
+
             toast.success(state.message || "Tour created.");
             // close first (dialog controlled by parent)
             if (onSuccess) onSuccess();
@@ -110,6 +113,7 @@ export default function TourFormDialog({
             // schedule reset after closing to avoid synchronous cascading renders warning
             // this allows parent to unmount/mount or refresh without React warning.
             setTimeout(() => {
+                handledSuccess.current = false;
                 if (formRef.current) formRef.current.reset();
                 setTitle("");
                 setDescription("");
@@ -126,7 +130,6 @@ export default function TourFormDialog({
                 setImagesPreview([]);
                 setRawImages([]);
                 setTourType([]);
-                // setTourType("");
                 setDifficulty("");
             }, 0);
 
@@ -135,7 +138,7 @@ export default function TourFormDialog({
             // Do NOT reset the form on error. field-level errors are shown via InputFieldError.
             // Keep previews and form values so user can fix errors.
         }
-    }, [state, onClose, onSuccess]);
+    }, [state]);
 
     /* ---------- itinerary helpers ---------- */
     const addDay = () =>
@@ -165,15 +168,6 @@ export default function TourFormDialog({
         setter((prev) => prev.map((v, i) => (i === idx ? value : v)));
     const removeArrayItemGeneric = (setter: React.Dispatch<React.SetStateAction<string[]>>, idx: number) =>
         setter((prev) => prev.filter((_, i) => i !== idx));
-
-
-    const toggleTourType = (value: string) => {
-        setTourType(prev =>
-            prev.includes(value)
-                ? prev.filter(v => v !== value)
-                : [...prev, value]
-        );
-    };
 
 
     /* ---------- images: allow max 3 ---------- */
@@ -241,7 +235,8 @@ export default function TourFormDialog({
             .map((s: any) => s.trim())
             .filter(Boolean);
 
-        addHidden("tourType", JSON.stringify(tourType ? [tourType] : [])); // backend expects array (if your backend expects string, change accordingly)
+        addHidden("tourType", JSON.stringify(tourType));
+        // addHidden("tourType", JSON.stringify(tourType ? [tourType] : [])); // backend expects array (if your backend expects string, change accordingly)
         addHidden("difficultyLevel", difficulty ?? "");
         addHidden("tags", JSON.stringify(tagsArr));
         addHidden("highlights", JSON.stringify(highlights || []));
@@ -280,22 +275,6 @@ export default function TourFormDialog({
                         </Field>
 
                         {/* TourType - SINGLE SELECT (dropdown) */}
-                        {/* <Field>
-              <FieldLabel>Tour Type</FieldLabel>
-              <Select onValueChange={(v) => setTourType(v)} value={tourType}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a tour type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {tourTypeValues.map((t: any) => (
-                    <SelectItem key={t} value={t}>
-                      {t}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <InputFieldError field="tourType" state={state} />
-            </Field> */}
                         <Field>
                             <FieldLabel>Tour Type</FieldLabel>
 

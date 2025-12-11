@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-
+import noImage from "@/assets/images/noImage.png";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -27,7 +27,7 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
             {/* LEFT IMAGE */}
             <div className="relative w-full h-48 lg:h-full rounded-lg overflow-hidden">
                 <Image
-                    src={tour.images?.[0] || "/placeholder.jpg"}
+                    src={tour.images?.[0] || noImage}
                     alt={tour.title || "Tour Image"}
                     fill
                     className="object-cover"
@@ -35,8 +35,7 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
 
                 {/* Status Badge */}
                 <span
-                    className="absolute top-2 left-2 px-3 py-1 text-xs font-medium rounded-full text-white bg-yellow-500"
-                >
+                    className="absolute top-2 left-2 px-3 py-1 text-xs font-medium rounded-full text-white bg-yellow-500">
                     {tour.statusByAdmin}
                 </span>
             </div>

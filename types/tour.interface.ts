@@ -41,7 +41,7 @@ export enum TTourStatus {
 }
 
 export enum TTourStatusByAdmin {
-    REQ_SEND = "NOT SEND",
+    REQ_SEND = "SEND REQUEST",
     PENDING = "PENDING",
     APPROVED = "APPROVED",
     REJECTED = "REJECTED",

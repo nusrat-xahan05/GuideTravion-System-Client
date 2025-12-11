@@ -57,17 +57,11 @@ export async function createTourAction(_prevState: any, formData: FormData): Pro
         const finalFD = new FormData();
 
         finalFD.append("data", JSON.stringify(validated.data));
-        // append image files LAST
-        // rawImages.forEach(file => {
-        //     finalFD.append("files", file);
-        // });
-
         rawImages.forEach(file => {
             if (file && file instanceof File && file.size > 0) {
                 finalFD.append("files", file);
             }
         });
-
 
         const response = await serverFetch.post(`/tour/create-tour`, {
             body: finalFD, // Multipart request

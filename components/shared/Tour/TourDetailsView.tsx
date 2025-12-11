@@ -2,6 +2,7 @@
 "use client";
 
 import Image from "next/image";
+import noImage from "@/assets/images/noImage.png";
 // import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MapPin, Clock, DollarSign, Users, Star } from "lucide-react";
@@ -11,6 +12,7 @@ import { ITour } from "@/types/tour.interface";
 // import { useAuthStore } from "@/store/auth.store"; // <-- replace with your auth logic
 
 export default function TourDetailsView({ tour }: { tour: ITour }) {
+    console.log('from tour: ', tour);
     // const router = useRouter();
     // const user = useAuthStore((state: any) => state.user); // tourist or guide
 
@@ -24,8 +26,8 @@ export default function TourDetailsView({ tour }: { tour: ITour }) {
             {/* Header Image */}
             <div className="relative h-[420px] w-full rounded-xl overflow-hidden shadow-md">
                 <Image
-                    src={tour.images?.[0] as string}
-                    alt={tour.title}
+                    src={tour?.images?.[0] as string || noImage}
+                    alt={tour?.title}
                     fill
                     className="object-cover"
                 />

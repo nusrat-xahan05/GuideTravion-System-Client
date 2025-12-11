@@ -5,8 +5,8 @@ import GuideTourCard from "./GuideTourCard";
 
 
 
-
 const GuideToursView = ({ tours }: { tours: ITour[] }) => {
+    console.log('froom map: ', tours);
 
     return (
         <div className="space-y-4">
