@@ -5,6 +5,7 @@ import { getMyTours } from "@/services/user/tour.services";
 import GuideToursView from "@/components/modules/Guide/GuideToursManagement/GuideToursView";
 import GuideTourPagination from "@/components/modules/Guide/GuideToursManagement/GuideTourPagination";
 import TourCardSkeleton from "@/components/modules/Guide/GuideToursManagement/TourCardSkeleton";
+import { getUserProfile } from "@/services/auth/getUserProfile";
 // import GuideTourFilters from "@/components/modules/Guide/GuideToursManagement/GuideTourFilters";
 
 
@@ -15,7 +16,7 @@ const GuideToursManagementPage = async ({ searchParams, }: { searchParams: Promi
     const queryString = queryStringFormatter(searchParamsObj);
 
     const toursResult = await getMyTours(queryString);
-    console.log(toursResult.data);
+    const guideInfo = await getUserProfile();
 
     const totalPages = Math.ceil(
         (toursResult?.meta?.total || 1) / (toursResult?.meta?.limit || 1)
@@ -24,7 +25,7 @@ const GuideToursManagementPage = async ({ searchParams, }: { searchParams: Promi
 
     return (
         <div className="space-y-6">
-            <ToursManagementHeader />
+            <ToursManagementHeader guideInfo={JSON.parse(JSON.stringify(guideInfo))} />
 
             {/* <GuideTourFilters /> */}
 
