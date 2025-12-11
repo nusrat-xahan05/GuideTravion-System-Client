@@ -209,6 +209,7 @@ export const adminNavItems: NavSection[] = [
                 href: "/admin/dashboard/verify-guides",
                 icon: "CheckSquare",
                 roles: [TUserRole.ADMIN],
+                badge: "pending",
             },
         ],
     },
@@ -219,8 +220,7 @@ export const adminNavItems: NavSection[] = [
                 title: "All Tours",
                 href: "/admin/dashboard/tours-management",
                 icon: "Calendar",
-                roles: [TUserRole.ADMIN],
-                badge: "pending",
+                roles: [TUserRole.ADMIN]
             },
             {
                 title: "Featured Tours",

@@ -91,7 +91,7 @@ export async function sendGuideVerificationRequest(_prevState: any, formData: Fo
         });
 
         const result = await response.json();
-        console.log('fron send request status: ', result);
+    
         // revalidate cache
         revalidateTag("user-info", { expire: 0 });
         return result;
