@@ -63,8 +63,8 @@ export const guideNavItems: NavSection[] = [
         title: "Tours",
         items: [
             {
-                title: "Create Tour",
-                href: "/guide/dashboard/tours/create",
+                title: "All Tours",
+                href: "/guide/dashboard/tours-management",
                 icon: "PlusCircle",
                 roles: [TUserRole.GUIDE],
             },
@@ -73,7 +73,7 @@ export const guideNavItems: NavSection[] = [
                 href: "/guide/dashboard/tours",
                 icon: "Calendar",
                 roles: [TUserRole.GUIDE],
-                badge: "new",
+                badge: "active",
             },
             {
                 title: "Drafts",
@@ -195,7 +195,7 @@ export const adminNavItems: NavSection[] = [
             {
                 title: "All Guides",
                 href: "/admin/dashboard/guides-management",
-                icon: "Users",
+                icon: "UserPlus",
                 roles: [TUserRole.ADMIN],
             },
             {
@@ -217,7 +217,7 @@ export const adminNavItems: NavSection[] = [
         items: [
             {
                 title: "All Tours",
-                href: "/admin/dashboard/tours",
+                href: "/admin/dashboard/tours-management",
                 icon: "Calendar",
                 roles: [TUserRole.ADMIN],
                 badge: "pending",

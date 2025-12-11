@@ -41,7 +41,6 @@ export const getUserProfile = async (): Promise<IUser | ITourist | IGuide> => {
         if (result.data && !result.data.profile) {
             userProfileInfo = result.data;
         }
-        console.log('from getUserProfile: ', userProfileInfo);
 
         return userProfileInfo;
     } catch (error: any) {

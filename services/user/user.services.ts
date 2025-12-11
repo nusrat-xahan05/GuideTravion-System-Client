@@ -10,10 +10,7 @@ import { TUserRole } from "@/types/user.interface";
 
 
 
-export async function updateMyProfile(
-    _prevState: any,
-    formData: FormData
-): Promise<ActionResponse> {
+export async function updateMyProfile(_prevState: any, formData: FormData): Promise<ActionResponse> {
     try {
         const uploadFormData = new FormData();
         const raw: any = {};
@@ -48,13 +45,13 @@ export async function updateMyProfile(
         const userRole = formData.get("role") || raw.role;
 
         let selectSchema = updateBaseUserSchema;
-
         if (userRole === TUserRole.GUIDE) {
             selectSchema = updateGuideSchema;
         }
         if (userRole === TUserRole.TOURIST) {
             selectSchema = updateTouristSchema
         }
+
 
         // --------- FORM DATA ZOD VALIDATION
         if (zodValidatorRequest(raw, selectSchema).success === false) {
@@ -67,7 +64,7 @@ export async function updateMyProfile(
         const file = formData.get("file");
         if (file && file instanceof File && file.size > 0) {
             uploadFormData.append("file", file);
-        }
+        }        
 
         const response = await serverFetch.patch(`/user/update-profile`, {
             body: uploadFormData,

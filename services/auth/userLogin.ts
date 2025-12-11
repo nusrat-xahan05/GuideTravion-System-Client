@@ -33,7 +33,6 @@ export const userLogin = async (_currentState: any, formData: any): Promise<any>
             return zodValidatorRequest(payload, userLoginSchema);
         }
         const validatedPayload = zodValidatorRequest(payload, userLoginSchema).data;
-        console.log('from login action function: ', validatedPayload);
 
 
         // --------- DATA FETCH REQUEST & RESPONSE
@@ -52,7 +51,7 @@ export const userLogin = async (_currentState: any, formData: any): Promise<any>
 
         // --------- GET THE COOKIES
         const userCookies = res.headers.getSetCookie();
-        console.log('from login action userCookies: ', userCookies);
+        
         if (userCookies && userCookies.length > 0) {
             userCookies.forEach((cookie: string) => {
                 const parsedCookie = parse(cookie);
@@ -100,9 +99,6 @@ export const userLogin = async (_currentState: any, formData: any): Promise<any>
             throw new Error("Invalid token");
         }
         const userRole: UserRole = verifiedToken.role;
-
-        // return result;
-        console.log('from login verified Token: ', verifiedToken);
 
 
         // --------- REDIRECT THE USER TO ROUTE
