@@ -7,10 +7,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { DollarSign, MapPin, Eye, PenSquare, Trash2, Star, CalendarDays, Users, BadgeCheck, Hourglass } from "lucide-react";
 import { ITour, TTourStatusByAdmin } from "@/types/tour.interface";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { sendTourVerificationRequest } from "@/services/user/tour.services";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import GuideEditTourDialog from "./GuideEditTourDialog";
 
 
 interface TourCardProps {
@@ -26,9 +27,10 @@ const StatusIcons: Record<string, any> = {
 
 export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
     const router = useRouter();
-
+    const [editingTour, setEditingTour] = useState<Partial<ITour> | null>(null);
     const [verifyState, verifyTour, isVerifying] = useActionState(
         sendTourVerificationRequest, null);
+
 
     useEffect(() => {
         if (!verifyState) return;
@@ -43,6 +45,7 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
 
     const canSendVerifyReq = tour.statusByAdmin === TTourStatusByAdmin.REQ_SEND
     // && guide.isVerifiedByAdmin;
+
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 rounded-xl border bg-white shadow-sm hover:shadow-lg transition-all p-4">
@@ -168,11 +171,19 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
                             </Button>
                         </Link>
 
-                        <Link href={`/guide/dashboard/tours/edit/${tour._id}`}>
+                        {/* <Link href={`/guide/dashboard/tours-management/edit-tour/${tour.slug}`}>
                             <Button size="sm" variant="secondary" className="flex items-center gap-1">
                                 <PenSquare className="w-4 h-4" /> Edit
                             </Button>
-                        </Link>
+                        </Link> */}
+                        <Button
+                            size="sm"
+                            variant="secondary"
+                            className="flex items-center gap-1"
+                            onClick={() => setEditingTour(tour)}
+                        >
+                            <PenSquare className="w-4 h-4" /> Edit
+                        </Button>
 
                         <Button
                             size="sm"
@@ -183,9 +194,20 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
                             <Trash2 className="w-4 h-4" /> Delete
                         </Button>
                     </div>
-
                 </div>
             </div>
+
+            {editingTour && (
+                <GuideEditTourDialog
+                    open={!!editingTour}
+                    onClose={() => setEditingTour(null)}
+                    onSuccess={() => {
+                        setEditingTour(null);
+                        // router.refresh(); // if needed
+                    }}
+                    tour={editingTour}
+                />
+            )}
         </div>
     );
 }

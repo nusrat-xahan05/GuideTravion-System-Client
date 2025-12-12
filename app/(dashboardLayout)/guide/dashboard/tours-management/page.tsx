@@ -7,8 +7,6 @@ import GuideTourPagination from "@/components/modules/Guide/GuideToursManagement
 import TourCardSkeleton from "@/components/modules/Guide/GuideToursManagement/TourCardSkeleton";
 import { getUserProfile } from "@/services/auth/getUserProfile";
 import GuideTourFilters from "@/components/modules/Guide/GuideToursManagement/GuideTourFilters";
-// import GuideTourFilters from "@/components/modules/Guide/GuideToursManagement/GuideTourFilters";
-
 
 
 

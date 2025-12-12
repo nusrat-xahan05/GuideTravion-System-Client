@@ -3,6 +3,9 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import SearchFilter from "@/components/shared/Table/SearchFilter";
+import RefreshButton from "@/components/shared/Table/RefreshButton";
+import SelectFilter from "@/components/shared/Table/SelectFilter";
 
 const GuideTourFilters = () => {
     const router = useRouter();
@@ -21,14 +24,32 @@ const GuideTourFilters = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4 border rounded-lg bg-white">
 
             {/* Search */}
-            <Input
+            {/* <Input
                 placeholder="Search tours..."
                 className="w-full md:w-1/3"
                 defaultValue={searchParams.get("search") || ""}
                 onChange={(e) => updateQuery("search", e.target.value)}
-            />
+            /> */}
+            <div className="flex items-center gap-3 flex-wrap">
+                <SearchFilter paramName="searchTerm" placeholder="Search by place name..." />
+                <RefreshButton />
+            </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
+
+                <SelectFilter
+                    paramName="statusByAdmin"
+                    placeholder="Verify Status"
+                    defaultValue="All Verification Status"
+                    options={[
+                        { label: "SEND REQUEST", value: "SEND REQUEST" },
+                        { label: "PENDING", value: "PENDING" },
+                        { label: "APPROVED", value: "APPROVED" },
+                        { label: "REJECTED", value: "REJECTED" }
+                    ]}
+                />
+
+                <SearchFilter paramName="division" placeholder="Division" />
 
                 {/* Sort */}
                 {/* <Select
