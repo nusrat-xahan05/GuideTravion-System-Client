@@ -23,7 +23,7 @@ export async function getAllGuides(queryString?: string) {
 
 export async function getAllPendingGuides(queryString?: string) {
     try {
-        const response = await serverFetch.get(`/user/verify-guides${queryString ? `?${queryString}` : ""}`);
+        const response = await serverFetch.get(`/user/pending-guides${queryString ? `?${queryString}` : ""}`);
         const result = await response.json();
         return result;
     } catch (error: any) {

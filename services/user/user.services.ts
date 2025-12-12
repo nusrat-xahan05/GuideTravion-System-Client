@@ -84,7 +84,7 @@ export async function updateMyProfile(_prevState: any, formData: FormData): Prom
 }
 
 
-export async function sendGuideVerificationRequest(_prevState: any, formData: FormData): Promise<ActionResponse> {
+export async function sendGuideVerificationRequest(_prevState: any, _formData: FormData): Promise<ActionResponse> {
     try {
         const response = await serverFetch.post(`/user/send-verify`, {
             body: '',

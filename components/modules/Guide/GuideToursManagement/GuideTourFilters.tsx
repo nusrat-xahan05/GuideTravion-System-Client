@@ -31,7 +31,7 @@ const GuideTourFilters = () => {
             <div className="flex items-center gap-3">
 
                 {/* Sort */}
-                <Select
+                {/* <Select
                     defaultValue={searchParams.get("sort") || ""}
                     onValueChange={(v) => updateQuery("sort", v)}
                 >
@@ -44,9 +44,24 @@ const GuideTourFilters = () => {
                         <SelectItem value="priceDesc">Price: High → Low</SelectItem>
                         <SelectItem value="ratingDesc">Rating: High → Low</SelectItem>
                     </SelectContent>
+                </Select> */}
+
+                <Select
+                    defaultValue={searchParams.get("sort") || "default"}
+                    onValueChange={(v) => updateQuery("sort", v === "default" ? "" : v)}
+                >
+                    <SelectTrigger className="w-40">
+                        <SelectValue placeholder="Sort By" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="default">Default</SelectItem>
+                        <SelectItem value="priceAsc">Price: Low → High</SelectItem>
+                        <SelectItem value="priceDesc">Price: High → Low</SelectItem>
+                        <SelectItem value="ratingDesc">Rating: High → Low</SelectItem>
+                    </SelectContent>
                 </Select>
 
-                {/* Status */}
+                {/* Status
                 <Select
                     defaultValue={searchParams.get("admin") || ""}
                     onValueChange={(v) => updateQuery("admin", v)}
@@ -60,7 +75,7 @@ const GuideTourFilters = () => {
                         <SelectItem value="PENDING">Pending</SelectItem>
                         <SelectItem value="REJECTED">Rejected</SelectItem>
                     </SelectContent>
-                </Select>
+                </Select> */}
 
             </div>
         </div>

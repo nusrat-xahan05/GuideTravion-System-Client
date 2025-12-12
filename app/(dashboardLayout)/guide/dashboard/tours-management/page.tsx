@@ -6,6 +6,7 @@ import GuideToursView from "@/components/modules/Guide/GuideToursManagement/Guid
 import GuideTourPagination from "@/components/modules/Guide/GuideToursManagement/GuideTourPagination";
 import TourCardSkeleton from "@/components/modules/Guide/GuideToursManagement/TourCardSkeleton";
 import { getUserProfile } from "@/services/auth/getUserProfile";
+import GuideTourFilters from "@/components/modules/Guide/GuideToursManagement/GuideTourFilters";
 // import GuideTourFilters from "@/components/modules/Guide/GuideToursManagement/GuideTourFilters";
 
 
@@ -27,7 +28,7 @@ const GuideToursManagementPage = async ({ searchParams, }: { searchParams: Promi
         <div className="space-y-6">
             <ToursManagementHeader guideInfo={JSON.parse(JSON.stringify(guideInfo))} />
 
-            {/* <GuideTourFilters /> */}
+            <GuideTourFilters />
 
             <Suspense fallback={<TourCardSkeleton items={8} />}>
                 <GuideToursView tours={toursResult.data} />

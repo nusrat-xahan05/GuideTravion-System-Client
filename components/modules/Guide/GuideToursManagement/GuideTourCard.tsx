@@ -6,7 +6,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { DollarSign, MapPin, Eye, PenSquare, Trash2, Star, CalendarDays, Users, BadgeCheck, Hourglass } from "lucide-react";
-import { ITour } from "@/types/tour.interface";
+import { ITour, TTourStatusByAdmin } from "@/types/tour.interface";
+import { useActionState, useEffect } from "react";
+import { sendTourVerificationRequest } from "@/services/user/tour.services";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 
 interface TourCardProps {
@@ -21,6 +25,25 @@ const StatusIcons: Record<string, any> = {
 
 
 export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
+    const router = useRouter();
+
+    const [verifyState, verifyTour, isVerifying] = useActionState(
+        sendTourVerificationRequest, null);
+
+    useEffect(() => {
+        if (!verifyState) return;
+
+        if (verifyState.success) {
+            toast.success(verifyState.message || "Verification request sent!");
+            router.refresh();
+        } else {
+            toast.error(verifyState.message || "Failed to send verification request.");
+        }
+    }, [verifyState, router]);
+
+    const canSendVerifyReq = tour.statusByAdmin === TTourStatusByAdmin.REQ_SEND
+    // && guide.isVerifiedByAdmin;
+
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 rounded-xl border bg-white shadow-sm hover:shadow-lg transition-all p-4">
 
@@ -42,22 +65,41 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
 
             {/* RIGHT CONTENT */}
             <div className="flex flex-col justify-between flex-1 space-y-3 lg:col-span-2">
-
                 {/* Title */}
-                <h2 className="text-lg font-semibold line-clamp-1">
-                    {tour.title}
-                </h2>
+                <div className="flex justify-between">
+                    <div>
+                        <h2 className="text-lg font-semibold line-clamp-1">
+                            {tour.title}
+                        </h2>
 
-                {/* Tags row */}
-                <div className="flex flex-wrap gap-2">
-                    {tour.tourType?.map((t, i) => (
-                        <span
-                            key={i}
-                            className="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-md"
-                        >
-                            {t}
-                        </span>
-                    ))}
+                        {/* Tags row */}
+                        <div className="flex flex-wrap gap-2">
+                            {tour.tourType?.map((t, i) => (
+                                <span
+                                    key={i}
+                                    className="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-md"
+                                >
+                                    {t}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div>
+                        {tour.statusByAdmin === TTourStatusByAdmin.REQ_SEND && (
+                            <form action={verifyTour}>
+                                <input type="hidden" name="slug" value={tour.slug} />
+
+                                <Button
+                                    type="submit"
+                                    className="cursor-pointer"
+                                    disabled={!canSendVerifyReq || isVerifying}
+                                >
+                                    {isVerifying ? "Sending..." : "Send Verification Request"}
+                                </Button>
+                            </form>
+                        )}
+                    </div>
                 </div>
 
                 {/* TOUR DETAILS */}

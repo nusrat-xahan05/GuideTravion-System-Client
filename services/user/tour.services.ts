@@ -113,3 +113,24 @@ export async function getTourBySlug(slug?: string) {
         };
     }
 }
+
+
+export async function sendTourVerificationRequest(_prevState: any, formData: FormData) {
+    try {
+        const slug = formData.get("slug") as string;
+        const response = await serverFetch.patch(`/tour/${slug}/send-verify-req`, {
+            body: '',
+        });
+
+        const result = await response.json();
+
+        // revalidate cache
+        revalidateTag("tours-list", { expire: 0 });
+        return result;
+    } catch (err: any) {
+        return {
+            success: false,
+            message: err?.message || "Failed to submit verification request",
+        };
+    }
+}
