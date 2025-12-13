@@ -22,39 +22,9 @@ export const getCommonNavItems = (role: UserRole): NavSection[] => {
                     href: "/my-profile",
                     icon: "User",
                     roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
-                },
-                {
-                    title: "Notifications",
-                    href: "/notifications",
-                    icon: "Bell",
-                    roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
-                },
+                }
             ],
-        },
-
-        {
-            title: "Account",
-            items: [
-                {
-                    title: "Settings",
-                    href: "/settings",
-                    icon: "Settings",
-                    roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
-                },
-                {
-                    title: "Security",
-                    href: "/security",
-                    icon: "Shield",
-                    roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
-                },
-                {
-                    title: "Help Center",
-                    href: "/help",
-                    icon: "HelpCircle",
-                    roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
-                },
-            ],
-        },
+        }
     ];
 };
 
@@ -74,13 +44,7 @@ export const guideNavItems: NavSection[] = [
                 icon: "Calendar",
                 roles: [TUserRole.GUIDE],
                 badge: "active",
-            },
-            {
-                title: "Drafts",
-                href: "/guide/dashboard/tours/drafts",
-                icon: "File",
-                roles: [TUserRole.GUIDE],
-            },
+            }
         ],
     },
     {
@@ -122,24 +86,7 @@ export const guideNavItems: NavSection[] = [
                 roles: [TUserRole.GUIDE],
             },
         ],
-    },
-    {
-        title: "Guide Tools",
-        items: [
-            {
-                title: "Availability Calendar",
-                href: "/guide/dashboard/availability",
-                icon: "CalendarCheck",
-                roles: [TUserRole.GUIDE],
-            },
-            {
-                title: "Analytics",
-                href: "/guide/dashboard/analytics",
-                icon: "ChartPie",
-                roles: [TUserRole.GUIDE],
-            },
-        ],
-    },
+    }
 ];
 
 
@@ -167,24 +114,7 @@ export const touristNavItems: NavSection[] = [
                 roles: [TUserRole.TOURIST],
             },
         ],
-    },
-    {
-        title: "Records",
-        items: [
-            {
-                title: "Past Bookings",
-                href: "/dashboard/bookings/history",
-                icon: "Clock",
-                roles: [TUserRole.TOURIST],
-            },
-            {
-                title: "Invoices",
-                href: "/dashboard/invoices",
-                icon: "FileText",
-                roles: [TUserRole.TOURIST],
-            },
-        ],
-    },
+    }
 ];
 
 
@@ -232,23 +162,6 @@ export const adminNavItems: NavSection[] = [
                 title: "Categories",
                 href: "/admin/dashboard/categories",
                 icon: "Tag",
-                roles: [TUserRole.ADMIN],
-            },
-        ],
-    },
-    {
-        title: "Finance & Reports",
-        items: [
-            {
-                title: "Transactions",
-                href: "/admin/dashboard/transactions",
-                icon: "CreditCard",
-                roles: [TUserRole.ADMIN],
-            },
-            {
-                title: "Reports",
-                href: "/admin/dashboard/reports",
-                icon: "BarChart",
                 roles: [TUserRole.ADMIN],
             },
         ],

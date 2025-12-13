@@ -1,16 +1,21 @@
+import TourDetailsView from "@/components/shared/Tour/TourDetailsView";
+import { getUserRole } from "@/services/auth/getUserRole";
+import { getTourBySlug } from "@/services/user/tour.services";
 
-const TourDetailPage = async ({ params, }: { params: Promise<{ id: string }>; }) => {
-    const { id } = await params;
 
-    console.log('from page: ', id);
-    // const result = await getDoctorById(id);
+const PublicTourDetailsPage = async ({ params, }: { params: Promise<{ slug: string }>; }) => {
+    const { slug } = await params;
+    const tourData = await getTourBySlug(slug);
+
+    const userRole = await getUserRole();
+    console.log('getuserRole: ', userRole);
+
+
     return (
-        <div className="container mx-auto px-4 py-8 space-y-6">
-            <h2>hello from doctor page</h2>
-            {/* <DoctorProfileContent doctor={result.data} />
-            <DoctorReviews doctorId={id} /> */}
-        </div>
+        <TourDetailsView tour={tourData.data} user={userRole}>
+            {/* <AvailabilityCard tourId={tourData._id} /> */}
+        </TourDetailsView>
     );
 };
 
-export default TourDetailPage;
+export default PublicTourDetailsPage;

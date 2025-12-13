@@ -17,7 +17,6 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
             toast.error(state.message);
         }
     }, [state]);
-    // console.log('from login-form state: ', state);
 
     return (
         <form action={formAction}>
@@ -32,7 +31,6 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                             name="email"
                             type="email"
                             placeholder="m@example.com"
-                        //   required
                         />
 
                         <InputFieldError field="email" state={state} />
@@ -53,7 +51,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                 </div>
                 <FieldGroup className="mt-4">
                     <Field>
-                        <Button type="submit" disabled={isPending}>
+                        <Button className="cursor-pointer" type="submit" disabled={isPending}>
                             {isPending ? "Logging in..." : "Login"}
                         </Button>
 
@@ -61,11 +59,6 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                             Don&apos;t have an account?{" "}
                             <Link href="/register/tourist" className="text-blue-600 hover:underline">
                                  Sign up
-                            </Link>
-                        </FieldDescription>
-                        <FieldDescription className="px-6 text-center">
-                            <Link href="/forget-password" className="text-blue-600 hover:underline">
-                                Forgot password?
                             </Link>
                         </FieldDescription>
                     </Field>

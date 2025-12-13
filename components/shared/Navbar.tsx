@@ -11,12 +11,10 @@ const Navbar = async () => {
     const navItems = [
         { href: "/", label: "Home" },
         { href: "/about", label: "About" },
-        { href: "/tours", label: "Tours" },
-        { href: "/contact", label: "Contact" },
+        { href: "/tours", label: "Tours" }
     ];
 
     const userRole = await getUserRole();
-    console.log('getuserRole: ', userRole);
     const dashboardLink = userRole ? getDefaultDashboardRoute(userRole) : '/';
 
 

@@ -434,7 +434,7 @@ export default function MyProfile({ userInfo }: Props) {
                                 </div>
 
                                 <div>
-                                    <Button type="submit" disabled={isSubmitting}>
+                                    <Button className="cursor-pointer" type="submit" disabled={isSubmitting}>
                                         {isSubmitting ? (
                                             <>
                                                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

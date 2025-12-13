@@ -3,159 +3,149 @@
 
 import Image from "next/image";
 import noImage from "@/assets/images/noImage.png";
-// import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { MapPin, Clock, DollarSign, Users, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-// import { useRouter } from "next/navigation";
+import AvailabilityCard from "./AvailabilityCard";
 import { ITour } from "@/types/tour.interface";
-// import { useAuthStore } from "@/store/auth.store"; // <-- replace with your auth logic
+import { TUserRole } from "@/types/user.interface";
 
-export default function TourDetailsView({ tour }: { tour: ITour }) {
-    console.log('from tour: ', tour);
-    // const router = useRouter();
-    // const user = useAuthStore((state: any) => state.user); // tourist or guide
 
-    // const handleBooking = () => {
-    //     if (!user) return router.push("/login?redirect=" + `/tour/${tour.slug}`);
-    //     router.push(`/tour/${tour.slug}/booking`);
-    // };
 
+interface TourDetailsViewProps {
+    tour: ITour;
+    user: TUserRole | null;
+}
+
+export default function TourDetailsView({ tour, user }: TourDetailsViewProps) {
     return (
-        <div className="max-w-6xl mx-auto py-10 px-4 space-y-10">
-            {/* Header Image */}
-            <div className="relative h-[420px] w-full rounded-xl overflow-hidden shadow-md">
+        <div className="max-w-7xl mx-auto px-4 py-10">
+            {/* HERO IMAGE */}
+            <div className="relative h-[420px] rounded-2xl overflow-hidden shadow">
                 <Image
-                    src={tour?.images?.[0] as string || noImage}
-                    alt={tour?.title}
+                    src={tour.images?.[0] || noImage}
+                    alt={tour.title}
                     fill
+                    priority
                     className="object-cover"
                 />
             </div>
 
-            {/* Title & Basic Info */}
-            <div className="space-y-4">
-                <h1 className="text-3xl font-bold">{tour.title}</h1>
+            {/* CONTENT GRID */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-10">
+                {/* LEFT CONTENT */}
+                <div className="lg:col-span-2 space-y-10">
+                    {/* TITLE + META */}
+                    <section className="space-y-3">
+                        <h1 className="text-3xl font-bold">{tour.title}</h1>
 
-                <div className="flex flex-wrap gap-6 text-gray-700">
-                    <div className="flex items-center gap-2">
-                        <MapPin className="w-5 h-5 text-primary" />
-                        <span>{tour.location}, {tour.division}</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                        <Clock className="w-5 h-5 text-primary" />
-                        <span>{tour.durationDays} Day(s)</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                        <DollarSign className="w-5 h-5 text-primary" />
-                        <span>{tour.pricePerPerson} ৳ / person</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                        <Users className="w-5 h-5 text-primary" />
-                        <span>Max group: {tour.maxGroupSize}</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                        <Star className="w-5 h-5 text-yellow-500" />
-                        <span>{tour.averageRating} ({tour.totalReviews} reviews)</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* Description */}
-            <section className="space-y-2">
-                <h2 className="text-xl font-semibold">About This Tour</h2>
-                <p className="text-gray-700">{tour.description}</p>
-            </section>
-
-            {/* Highlights */}
-            <section>
-                <h2 className="text-xl font-semibold mb-3">Highlights</h2>
-                <ul className="list-disc pl-6 text-gray-700 space-y-1">
-                    {tour.highlights.map((h: string, i: number) => (
-                        <li key={i}>{h}</li>
-                    ))}
-                </ul>
-            </section>
-
-            {/* Includes & Excludes */}
-            <div className="grid md:grid-cols-2 gap-8">
-                <Card>
-                    <CardContent className="p-5">
-                        <h2 className="font-semibold text-lg mb-3">Included</h2>
-                        <ul className="list-disc pl-5 text-gray-700 space-y-1">
-                            {tour?.includes?.map((inc: string, i: number) => (
-                                <li key={i}>{inc}</li>
-                            ))}
-                        </ul>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardContent className="p-5">
-                        <h2 className="font-semibold text-lg mb-3">Excluded</h2>
-                        <ul className="list-disc pl-5 text-gray-700 space-y-1">
-                            {tour?.excludes?.map((exc: string, i: number) => (
-                                <li key={i}>{exc}</li>
-                            ))}
-                        </ul>
-                    </CardContent>
-                </Card>
-            </div>
-
-            {/* Itinerary */}
-            <section>
-                <h2 className="text-xl font-semibold mb-3">Itinerary</h2>
-                {tour?.itinerary?.map((item: any, index: number) => (
-                    <Card key={index} className="mb-4">
-                        <CardContent className="p-5 space-y-2">
-                            <h3 className="font-bold">Day {item.day}: {item.title}</h3>
-                            <p className="text-gray-700">{item.description}</p>
-
-                            {item.activities && (
-                                <ul className="list-disc pl-5 text-gray-700 space-y-1">
-                                    {item.activities.map((act: string, i: number) => (
-                                        <li key={i}>{act}</li>
-                                    ))}
-                                </ul>
+                        <div className="flex flex-wrap gap-5 text-muted-foreground">
+                            <Meta icon={MapPin} text={`${tour.location}, ${tour.division}`} />
+                            <Meta icon={Clock} text={`${tour.durationDays} Day(s)`} />
+                            <Meta icon={Users} text={`Max ${tour.maxGroupSize} People`} />
+                            <Meta
+                                icon={DollarSign}
+                                text={`${tour.pricePerPerson}৳ / person`}
+                            />
+                            {tour.averageRating && (
+                                <Meta
+                                    icon={Star}
+                                    text={`${tour.averageRating} (${tour.totalReviews} reviews)`}
+                                    highlight
+                                />
                             )}
-                        </CardContent>
-                    </Card>
-                ))}
-            </section>
+                        </div>
+                    </section>
 
-            {/* Meeting & Pickup Details */}
-            {(tour.meetingTime || tour.pickupLocation || tour.dropoffLocation) && (
-                <section className="space-y-4">
-                    <h2 className="text-xl font-semibold">Meeting & Pickup Info</h2>
+                    {/* TOUR TYPES */}
+                    <div className="flex flex-wrap gap-2">
+                        {tour.tourType.map((type, i) => (
+                            <span
+                                key={i}
+                                className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm"
+                            >
+                                {type}
+                            </span>
+                        ))}
+                    </div>
 
-                    {tour.meetingTime && (
-                        <p><strong>Meeting Time:</strong> {tour.meetingTime}</p>
+                    {/* ABOUT */}
+                    <Section title="About This Tour">
+                        <p className="text-muted-foreground leading-relaxed">
+                            {tour.description}
+                        </p>
+                    </Section>
+
+                    {/* HIGHLIGHTS */}
+                    <Section title="Highlights">
+                        <ul className="grid sm:grid-cols-2 gap-3 list-disc pl-5 text-muted-foreground">
+                            {tour.highlights.map((item, i) => (
+                                <li key={i}>{item}</li>
+                            ))}
+                        </ul>
+                    </Section>
+
+                    {/* INCLUDED / EXCLUDED */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <InfoCard title="What's Included" items={tour.includes} />
+                        <InfoCard title="What's Excluded" items={tour.excludes} />
+                    </div>
+
+                    {/* ITINERARY */}
+                    {tour.itinerary?.length && (
+                        <Section title="Itinerary">
+                            <div className="space-y-4">
+                                {tour.itinerary.map((day, i) => (
+                                    <Card key={i}>
+                                        <CardContent className="p-5 space-y-2">
+                                            <h4 className="font-semibold">
+                                                Day {day.day}: {day.title}
+                                            </h4>
+                                            <p className="text-muted-foreground">
+                                                {day.description}
+                                            </p>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </div>
+                        </Section>
                     )}
+                </div>
 
-                    {tour.pickupLocation && (
-                        <p><strong>Pickup Address:</strong> {tour.pickupLocation}</p>
-                    )}
-
-                    {tour.dropoffLocation && (
-                        <p><strong>Drop-off Address:</strong> {tour.dropoffLocation}</p>
-                    )}
-                </section>
-            )}
-
-            {/* Booking Button */}
-            <div className="py-8">
-                <Button
-                    size="lg"
-                    className="px-8 text-lg"
-                    // onClick={handleBooking}
-                >
-                    Book This Tour
-                </Button>
+                {/* RIGHT SIDEBAR */}
+                <div className="lg:sticky top-24 h-fit">
+                    <AvailabilityCard tour={tour} user={user} />
+                </div>
             </div>
         </div>
     );
 }
+
+/* ---------- Helper Components ---------- */
+
+const Meta = ({ icon: Icon, text, highlight = false }: any) => (
+    <div className={`flex items-center gap-2 ${highlight && "text-yellow-600"}`}>
+        <Icon className="w-5 h-5" />
+        <span>{text}</span>
+    </div>
+);
+
+const Section = ({ title, children }: any) => (
+    <section className="space-y-4">
+        <h2 className="text-xl font-semibold">{title}</h2>
+        {children}
+    </section>
+);
+
+const InfoCard = ({ title, items }: any) => (
+    <Card>
+        <CardContent className="p-5 space-y-3">
+            <h3 className="font-semibold">{title}</h3>
+            <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+                {items?.map((item: string, i: number) => (
+                    <li key={i}>{item}</li>
+                ))}
+            </ul>
+        </CardContent>
+    </Card>
+);
+

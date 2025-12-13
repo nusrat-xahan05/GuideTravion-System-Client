@@ -9,22 +9,22 @@ export const authRoutes = ["/login", "/register/guide", "/register/tourist", "/f
 
 export const commonProtectedRoutes: RouteConfig = {
     exact: ["/my-profile", "/settings", "/change-password", "/reset-password"],
-    patterns: [], // [/password/change-password, /password/reset-password => /password/*]
+    patterns: [],
 }
 
 export const guideProtectedRoutes: RouteConfig = {
-    patterns: [/^\/guide/], // Routes starting with /guide/* , /assitants, /appointments/*
-    exact: [], // "/assistants"
+    patterns: [/^\/guide/],
+    exact: [],
 }
 
 export const adminProtectedRoutes: RouteConfig = {
-    patterns: [/^\/admin/], // Routes starting with /admin/*
-    exact: [], // "/admins"
+    patterns: [/^\/admin/], 
+    exact: [],
 }
 
 export const touristProtectedRoutes: RouteConfig = {
-    patterns: [/^\/dashboard/], // Routes starting with /dashboard/*
-    exact: [], // "/dashboard"
+    patterns: [/^\/dashboard/],
+    exact: [],
 }
 
 export const isAuthRoute = (pathname: string) => {
