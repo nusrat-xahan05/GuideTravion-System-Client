@@ -185,7 +185,7 @@ export async function getMyActiveTours(queryString?: string) {
 export async function getAllActiveApprovedTours(queryString?: string) {
     try {
         const response = await serverFetch.get(`/tour${queryString ? `?${queryString}` : ""}`, {
-            next: {revalidate: 60}
+            next: { revalidate: 60 }
         });
         const result = await response.json();
         return result;
@@ -197,6 +197,25 @@ export async function getAllActiveApprovedTours(queryString?: string) {
         };
     }
 }
+
+
+export async function getTopTours() {
+    try {
+        const response = await serverFetch.get(`/tour/top-tours`,
+            { cache: "no-store" }
+        );
+
+        const result = await response.json();
+        return result;
+    } catch (error: any) {
+        console.log(error);
+        return {
+            success: false,
+            message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
+        };
+    }
+};
+
 
 
 export async function getTourBySlug(slug?: string) {

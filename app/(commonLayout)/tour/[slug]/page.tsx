@@ -8,12 +8,10 @@ const PublicTourDetailsPage = async ({ params, }: { params: Promise<{ slug: stri
     const tourData = await getTourBySlug(slug);
 
     const userRole = await getUserRole();
-    console.log('getuserRole: ', userRole);
 
 
     return (
         <TourDetailsView tour={tourData.data} user={userRole}>
-            {/* <AvailabilityCard tourId={tourData._id} /> */}
         </TourDetailsView>
     );
 };

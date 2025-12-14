@@ -11,7 +11,7 @@ const Navbar = async () => {
     const navItems = [
         { href: "/", label: "Home" },
         { href: "/about", label: "About" },
-        { href: "/tours", label: "Tours" }
+        { href: "/tour", label: "Tours" }
     ];
 
     const userRole = await getUserRole();

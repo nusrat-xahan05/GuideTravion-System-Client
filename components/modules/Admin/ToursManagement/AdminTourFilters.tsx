@@ -30,7 +30,6 @@ const AdminTourFilters = () => {
             </div>
 
             <div className="flex items-center gap-3 flex-wrap">
-
                 <SelectFilter
                     paramName="statusByAdmin"
                     placeholder="Verify Status"

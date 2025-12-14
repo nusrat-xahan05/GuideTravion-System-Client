@@ -107,3 +107,23 @@ export interface ITour {
     user?: IUser;
 }
 
+
+export interface TopTour {
+    _id: string;
+    title: string;
+    pricePerPerson: number;
+    durationDays: number;
+    averageRating: number;
+    totalReviews: number;
+    images: string[];
+    createdBy: {
+        firstName: string;
+        lastName: string;
+        profileImage?: string;
+        guide: {
+            occupation: string;
+            rating: number;
+        };
+    };
+}
+

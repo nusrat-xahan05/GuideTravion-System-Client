@@ -1,9 +1,10 @@
+import CTASection from '@/components/modules/Home/CTASection';
 import FeaturedTours from '@/components/modules/Home/FeaturedTours';
 import Hero from '@/components/modules/Home/Hero';
-import TopDestinations from '@/components/modules/Home/TopDestinations';
+import TopToursSection from '@/components/modules/Home/TopTour/TopToursSection';
 import WhyChooseUs from '@/components/modules/Home/WhyChooseUs';
 import { queryStringFormatter } from '@/lib/formatters';
-import { getAllActiveApprovedTours } from '@/services/user/tour.services';
+import { getTopTours } from '@/services/user/tour.services';
 
 
 const HomePage = async ({
@@ -14,14 +15,15 @@ const HomePage = async ({
     const searchParamsObj = await searchParams;
     const queryString = queryStringFormatter(searchParamsObj);
 
-    const result = await getAllActiveApprovedTours(queryString);
-    const topTours = result?.data?.data || [];
+    const result = await getTopTours();
+    const topTours = result?.data || [];
 
     return (
         <div>
             <Hero></Hero>
             <WhyChooseUs></WhyChooseUs>
-            <TopDestinations topTours={topTours} />
+            <TopToursSection topTours={topTours} />
+            <CTASection></CTASection>
             <FeaturedTours></FeaturedTours>
         </div>
     );
