@@ -51,40 +51,11 @@ export const guideNavItems: NavSection[] = [
         title: "Bookings",
         items: [
             {
-                title: "Booking Requests",
-                href: "/guide/dashboard/booking-requests",
-                icon: "Inbox",
-                roles: [TUserRole.GUIDE],
-            },
-            {
                 title: "Confirmed Bookings",
                 href: "/guide/dashboard/booked-tours",
                 icon: "CheckCircle",
                 roles: [TUserRole.GUIDE],
-            },
-            {
-                title: "Past Tours",
-                href: "/guide/dashboard/bookings/history",
-                icon: "Clock",
-                roles: [TUserRole.GUIDE],
-            },
-        ],
-    },
-    {
-        title: "Earnings",
-        items: [
-            {
-                title: "Payouts",
-                href: "/guide/dashboard/payouts",
-                icon: "Bank",
-                roles: [TUserRole.GUIDE],
-            },
-            {
-                title: "Transactions",
-                href: "/guide/dashboard/transactions",
-                icon: "CreditCard",
-                roles: [TUserRole.GUIDE],
-            },
+            }
         ],
     }
 ];
@@ -96,23 +67,11 @@ export const touristNavItems: NavSection[] = [
         title: "Explore & Book",
         items: [
             {
-                title: "Browse Tours",
-                href: "/tours",
-                icon: "Compass",
-                roles: [TUserRole.TOURIST],
-            },
-            {
                 title: "My Bookings",
                 href: "/dashboard/bookings",
                 icon: "Calendar",
                 roles: [TUserRole.TOURIST],
-            },
-            {
-                title: "Wishlist",
-                href: "/dashboard/wishlist",
-                icon: "Heart",
-                roles: [TUserRole.TOURIST],
-            },
+            }
         ],
     }
 ];
@@ -158,12 +117,6 @@ export const adminNavItems: NavSection[] = [
                 icon: "ShieldEllipsis",
                 roles: [TUserRole.ADMIN],
                 badge: "pending",
-            },
-            {
-                title: "Featured Tours",
-                href: "/admin/dashboard/featured",
-                icon: "Star",
-                roles: [TUserRole.ADMIN],
             }
         ],
     }

@@ -177,6 +177,7 @@ export default function ViewVerifyTour({ tour }: TourDetailsViewProps) {
 
                                 <Select
                                     value={statusByAdmin}
+                                    required
                                     onValueChange={(value) =>
                                         setStatusByAdmin(value as TTourStatusByAdmin)
                                     }
