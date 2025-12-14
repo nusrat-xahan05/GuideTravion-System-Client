@@ -23,7 +23,7 @@ interface Props {
     userInfo: IUser | IGuide | ITourist;
 }
 
-export default function MyProfile({ userInfo }: Props) {
+export default function MyEditProfile({ userInfo }: Props) {
     const router = useRouter();
     const [isPending, startTransition] = useTransition();
 

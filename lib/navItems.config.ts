@@ -18,8 +18,8 @@ export const getCommonNavItems = (role: UserRole): NavSection[] => {
                     roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
                 },
                 {
-                    title: "My Profile",
-                    href: "/my-profile",
+                    title: "Edit Profile",
+                    href: "/edit-profile",
                     icon: "User",
                     roles: [TUserRole.ADMIN, TUserRole.GUIDE, TUserRole.TOURIST],
                 }
@@ -40,8 +40,8 @@ export const guideNavItems: NavSection[] = [
             },
             {
                 title: "My Tours",
-                href: "/guide/dashboard/tours",
-                icon: "Calendar",
+                href: "/guide/dashboard/active-tours",
+                icon: "CircleCheckBig",
                 roles: [TUserRole.GUIDE],
                 badge: "active",
             }
