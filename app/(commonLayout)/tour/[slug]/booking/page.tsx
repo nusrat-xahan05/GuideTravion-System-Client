@@ -36,25 +36,3 @@ const BookingPage = async ({ searchParams, params, }: { searchParams: Promise<{ 
 }
 
 export default BookingPage;
-
-
-// const BookingPage = async ({ searchParams, params, }: { searchParams: Promise<{ startDate: Date, endDate: Date }>, params: Promise<{ slug: string }>; }) => {
-//     const { slug } = await params;
-//     const { startDate, endDate } = await searchParams;
-
-//     return (
-//         <div className="max-w-5xl mx-auto py-10 space-y-8">
-//             <BookingSummary
-//                 tourSlug={slug}
-//                 startDate={startDate}
-//                 endDate={endDate}
-//             />
-
-//             <BookingForm
-//                 tourSlug={slug}
-//                 startDate={startDate}
-//                 endDate={endDate}
-//             />
-//         </div>
-//     );
-// };

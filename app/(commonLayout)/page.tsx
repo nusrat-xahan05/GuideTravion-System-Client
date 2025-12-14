@@ -20,9 +20,9 @@ const HomePage = async ({
     return (
         <div>
             <Hero></Hero>
+            <WhyChooseUs></WhyChooseUs>
             <TopDestinations topTours={topTours} />
             <FeaturedTours></FeaturedTours>
-            <WhyChooseUs></WhyChooseUs>
         </div>
     );
 };

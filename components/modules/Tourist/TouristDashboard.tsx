@@ -15,7 +15,7 @@ export default function TouristDashboard({ userInfo }: TouristDashboardProps) {
     return (
         <div className="space-y-8">
             {/* HEADER */}
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 p-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 p-6 rounded-2xl bg-linear-to-r from-blue-600 to-indigo-600 text-white">
                 <div className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-white">
                     <Image
                         src={userInfo.profileImage || noImg}

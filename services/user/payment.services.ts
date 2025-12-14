@@ -12,10 +12,6 @@ export async function paymentInit(bookingId: string) {
 
         const result = await res.json();
         console.log('from payment response: ', result);
-        if (!res.ok) {
-            throw new Error("Payment initiation failed");
-        }
-
         return result;
     } catch (error: any) {
         return {
