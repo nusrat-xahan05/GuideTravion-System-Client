@@ -29,7 +29,7 @@ interface Props {
     tour: Partial<ITour>;
 }
 
-export default function GuideEditTourDialog({ open, onClose, onSuccess, tour }: Props) {
+export default function EditTourDialog({ open, onClose, onSuccess, tour }: Props) {
     const formRef = useRef<HTMLFormElement | null>(null);
     const imagesRef = useRef<HTMLInputElement | null>(null);
 
@@ -50,9 +50,9 @@ export default function GuideEditTourDialog({ open, onClose, onSuccess, tour }: 
 
     // ======================= SERVER ACTION =======================
     const [state, formAction, pending] = useActionState(
-    updateTourAction.bind(null, tour.slug as string),
-    null
-);
+        updateTourAction.bind(null, tour.slug as string),
+        null
+    );
 
     useEffect(() => {
         if (!state) return;

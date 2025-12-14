@@ -1,21 +1,20 @@
 import { queryStringFormatter } from "@/lib/formatters";
 import { Suspense } from "react";
 import TourCardSkeleton from "@/components/modules/Guide/GuideToursManagement/TourCardSkeleton";
-import { getAllTours } from "@/services/admin/tourManagement";
-import ToursManagementHeader from "@/components/modules/Admin/ToursManagement/ToursManagementHeader";
 import AdminTourFilters from "@/components/modules/Admin/ToursManagement/AdminTourFilters";
-import ToursViewMap from "@/components/shared/Tour/ToursViewMap";
 import ToursPagination from "@/components/shared/Tour/ToursPagination";
 import { getUserProfile } from "@/services/auth/getUserProfile";
+import { getAllPendingTours } from "@/services/admin/tourManagement";
+import VerifyToursHeader from "@/components/modules/Admin/VerifyTours/VerifyToursHeader";
+import VerifyToursViewMap from "@/components/modules/Admin/VerifyTours/VerifyToursViewMap";
 
 
 
-const AdminToursManagementPage = async ({ searchParams, }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }>; }) => {
+const AdminVerifyToursPage = async ({ searchParams, }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }>; }) => {
     const searchParamsObj = await searchParams;
     const queryString = queryStringFormatter(searchParamsObj);
 
-    const toursResult = await getAllTours(queryString);
-    const userInfo = await getUserProfile();
+    const toursResult = await getAllPendingTours(queryString);
 
     const totalPages = Math.ceil(
         (toursResult?.meta?.total || 1) / (toursResult?.meta?.limit || 1)
@@ -24,12 +23,12 @@ const AdminToursManagementPage = async ({ searchParams, }: { searchParams: Promi
 
     return (
         <div className="space-y-6">
-            <ToursManagementHeader />
+            <VerifyToursHeader />
 
             <AdminTourFilters />
 
             <Suspense fallback={<TourCardSkeleton items={8} />}>
-                <ToursViewMap tours={toursResult.data} userInfo={userInfo} />
+                <VerifyToursViewMap tours={toursResult?.data?.data} />
                 <ToursPagination
                     currentPage={toursResult?.meta?.page || 1}
                     totalPages={totalPages}
@@ -39,4 +38,4 @@ const AdminToursManagementPage = async ({ searchParams, }: { searchParams: Promi
     );
 };
 
-export default AdminToursManagementPage;
+export default AdminVerifyToursPage;

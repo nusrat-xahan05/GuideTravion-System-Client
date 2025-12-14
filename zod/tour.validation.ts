@@ -140,3 +140,8 @@ export const updateTourSchema = z.object({
     itinerary: z.array(itinerarySchema).optional(),
 });
 
+
+export const verifyTourStatusSchema = z.object({
+  statusByAdmin: z.enum(TTourStatusByAdmin)
+});
+

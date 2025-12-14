@@ -144,26 +144,27 @@ export const adminNavItems: NavSection[] = [
         ],
     },
     {
-        title: "Content & Tours",
+        title: "Tours Management",
         items: [
             {
                 title: "All Tours",
                 href: "/admin/dashboard/tours-management",
-                icon: "Calendar",
+                icon: "PlusCircle",
                 roles: [TUserRole.ADMIN]
+            },
+            {
+                title: "Verify Tours",
+                href: "/admin/dashboard/verify-tours",
+                icon: "ShieldEllipsis",
+                roles: [TUserRole.ADMIN],
+                badge: "pending",
             },
             {
                 title: "Featured Tours",
                 href: "/admin/dashboard/featured",
                 icon: "Star",
                 roles: [TUserRole.ADMIN],
-            },
-            {
-                title: "Categories",
-                href: "/admin/dashboard/categories",
-                icon: "Tag",
-                roles: [TUserRole.ADMIN],
-            },
+            }
         ],
     }
 ];

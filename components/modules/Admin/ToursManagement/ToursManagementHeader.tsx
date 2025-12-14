@@ -1,10 +1,10 @@
 "use client";
 
 import ManagementPageHeader from "@/components/shared/ManagementPage/ManagementPageHeader";
+import TourCreateDialog from "@/components/shared/Tour/TourCreateDialog";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import TourCreateDialog from "./TourCreateDialog";
 
 
 
@@ -38,15 +38,17 @@ const ToursManagementHeader = () => {
         onSuccess={handleSuccess}
       />
 
-      <ManagementPageHeader
-        title="Tours Management"
-        description="Manage Tours information and details"
-        action={{
-          label: "Add Tour    ",
-          icon: Plus,
-          onClick: handleOpenDialog,
-        }}
-      />
+      <div className="space-y-3">
+        <ManagementPageHeader
+          title="Tours Management"
+          description="Manage Tours information and details"
+          action={{
+            label: "Add Tour",
+            icon: Plus,
+            onClick: handleOpenDialog,
+          }}
+        />
+      </div>
     </>
   );
 };
