@@ -30,7 +30,6 @@ export const registerTourist = async (formData: FormData): Promise<ActionRespons
         });
 
         const result: ActionResponse = await res.json();
-        console.log('from register validatedPayload.phone: ', validatedPayload.data!.phone);
 
         if (result.success) {
             await userLogin(validatedPayload.data, formData);

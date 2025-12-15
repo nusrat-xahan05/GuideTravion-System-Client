@@ -26,9 +26,9 @@ export enum TCancelledBy {
 export interface IBooking {
     _id?: string;
 
-    tourId: string;
+    tourId: string | ITour;
     guideId: string;   // user id that acts as guide (matches GuideModel _id)
-    touristId: ITour; // user id of tourist
+    touristId: string; // user id of tourist
 
     startDate: Date; // start of booking (date/time)
     endDate: Date;   // end of booking (date/time)         

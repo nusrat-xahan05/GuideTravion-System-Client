@@ -72,7 +72,6 @@ export async function createTourAction(_prevState: any, formData: FormData): Pro
         revalidateTag("tours-list", { expire: 0 });
         return result;
     } catch (error: any) {
-        console.log("Create tour error:", error);
         return {
             success: false,
             message:
@@ -140,7 +139,6 @@ export async function updateTourAction(slug: string, _prevState: any, formData: 
         revalidateTag("tours-list", { expire: 0 });
         return result;
     } catch (error: any) {
-        console.log("Update tour error:", error);
         return {
             success: false,
             message:

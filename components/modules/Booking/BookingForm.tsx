@@ -29,7 +29,6 @@ export default function BookingForm({ tour, startDate, endDate, }: {
     );
 
     useEffect(() => {
-        console.log('from state: ', state);
         if (state && state.success) {
             toast.success(state.message);
             router.push(

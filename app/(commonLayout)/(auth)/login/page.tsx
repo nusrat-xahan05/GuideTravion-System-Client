@@ -13,7 +13,6 @@ const LoginPage = async ({
     searchParams?: Promise<{ redirect?: string }>;
 }) => {
     const params = (await searchParams) || {};
-    console.log('from login page params: ', params)
 
     return (
         <div className="px-4 flex min-h-screen items-center justify-center bg-linear-to-b from-white to-blue-50">

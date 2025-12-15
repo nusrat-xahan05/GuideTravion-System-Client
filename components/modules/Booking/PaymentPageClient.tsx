@@ -21,7 +21,6 @@ export default function PaymentPageClient({ bookingId }: { bookingId: string }) 
         const initPayment = async () => {
             try {
                 const res = await paymentInit(bookingId);
-                console.log('from payment response: ', res);
 
                 if (res.success && res.data) {
                     window.location.href = res.data;

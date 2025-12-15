@@ -4,7 +4,7 @@ import { getUserProfile } from "@/services/auth/getUserProfile";
 
 const MyEditProfilePage = async () => {
     const userInfo = await getUserProfile();
-    console.log('from user Info: ', userInfo);
+
     return <MyEditProfile userInfo={userInfo} />;
 };
 

@@ -46,8 +46,8 @@ export const bookingsColumn: Column<IBooking>[] = [
         header: "Booking Date",
         accessor: (bookings) => (
             <span className="text-sm font-semibold text-green-600">
-                {bookings?.createdAt?.toString() as string}
+                {new Date(bookings.startDate).toDateString()}
             </span>
         ),
-    },
+    }
 ];

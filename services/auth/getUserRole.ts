@@ -12,7 +12,7 @@ export const getUserRole = async (): Promise<TUserRole | null> => {
     }
 
     const verifiedTokenInfo = await verifyToken(accessToken, process.env.JWT_ACCESS_SECRET as string) as JwtPayload;
-    console.log('verifiedTokenInfo: ', verifiedTokenInfo)
+
     if (!verifiedTokenInfo.success || !verifiedTokenInfo.payload) {
         return null;
     }

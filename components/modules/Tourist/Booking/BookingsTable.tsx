@@ -3,6 +3,8 @@
 import ManagementTable from "@/components/shared/ManagementPage/ManagementTable";
 import { IBooking } from "@/types/booking.interface";
 import { bookingsColumn } from "./bookingsColumn";
+import BookingViewDetailDialog from "./BookingViewDetailDialog";
+import { useState } from "react";
 
 
 
@@ -14,7 +16,7 @@ interface BookingsTableProps {
 const BookingsTable = ({ bookings }: BookingsTableProps) => {
     // const router = useRouter();
     // const [, startTransition] = useTransition();
-    // const [viewingGuide, setViewingGuide] = useState<IGuide | null>(null);
+    const [viewingBooking, setViewingBooking] = useState<IBooking | null>(null);
 
     // const handleRefresh = () => {
     //     startTransition(() => {
@@ -22,9 +24,9 @@ const BookingsTable = ({ bookings }: BookingsTableProps) => {
     //     });
     // };
 
-    // const handleView = (guide: IGuide) => {
-    //     setViewingGuide(guide);
-    // };
+    const handleView = (bookings: IBooking) => {
+        setViewingBooking(bookings);
+    };
 
 
 
@@ -33,17 +35,16 @@ const BookingsTable = ({ bookings }: BookingsTableProps) => {
             <ManagementTable
                 data={bookings}
                 columns={bookingsColumn}
-                // onView={handleView}
+                onView={handleView}
                 getRowKey={(bookings) => bookings._id!}
                 emptyMessage="No Bookings Found"
             />
 
-            {/* View Guide Detail Dialog
-            <GuideViewDetailDialog
-                open={!!viewingGuide}
-                onClose={() => setViewingGuide(null)}
-                guide={viewingGuide}
-            /> */}
+            <BookingViewDetailDialog
+                open={!!viewingBooking}
+                booking={viewingBooking}
+                onClose={() => setViewingBooking(null)}
+            />
         </>
     );
 };

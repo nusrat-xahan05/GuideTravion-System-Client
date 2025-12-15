@@ -16,7 +16,6 @@ const AdminGuideManagementPage = async ({
     const queryString = queryStringFormatter(searchParamsObj);
 
     const guidesResult = await getAllGuides(queryString);
-    // console.log('from page: ', guidesResult);
 
     const totalPages = Math.ceil(
         (guidesResult?.meta?.total || 1) / (guidesResult?.meta?.limit || 1)

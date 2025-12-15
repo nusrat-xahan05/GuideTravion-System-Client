@@ -11,7 +11,6 @@ export async function paymentInit(bookingId: string) {
         })
 
         const result = await res.json();
-        console.log('from payment response: ', result);
         return result;
     } catch (error: any) {
         return {

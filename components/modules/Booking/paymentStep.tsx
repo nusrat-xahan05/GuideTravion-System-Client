@@ -14,7 +14,6 @@ export default function PaymentStep({ bookingId }: { bookingId: string }) {
         try {
             setLoading(true);
             const res = await paymentInit(bookingId);
-            console.log('from payment step: ', res);
 
             if (res.success && res?.data) {
                 window.location.href = res.data; // 🔥 redirect to SSL

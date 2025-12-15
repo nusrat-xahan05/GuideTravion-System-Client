@@ -29,7 +29,6 @@ export const registerGuide = async (formData: FormData): Promise<ActionResponse>
         });
 
         const result: ActionResponse = await res.json();
-        console.log('from register: ', result);
 
         if (result.success) {
             await userLogin(validatedPayload.data, formData);
