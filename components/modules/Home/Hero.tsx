@@ -97,9 +97,11 @@ export default function Hero(props: HeroProps = defaultProps) {
                     className="mt-8 flex flex-col sm:flex-row gap-4"
                 >
                     {buttons?.primary && (
-                        <Button className="px-8 py-6 text-[17px] font-semibold text-white transition bg-blue-800 hover:bg-blue-800 border border-blue-800">
-                            {buttons.primary.text}
-                        </Button>
+                        <Link href={'/tour'}>
+                            <Button className="px-8 py-6 text-[17px] font-semibold text-white transition bg-blue-800 hover:bg-blue-800 border border-blue-800">
+                                {buttons.primary.text}
+                            </Button>
+                        </Link>
                     )}
 
                     {buttons?.secondary && (

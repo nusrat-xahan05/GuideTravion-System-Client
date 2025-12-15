@@ -29,7 +29,7 @@ export default function CTASection() {
                 </p>
 
                 <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="/tours">
+                    <Link href="/tour">
                         <Button
                             size="lg"
                             className="cursor-pointer px-8 py-6 text-[17px] font-semibold text-blue-800 transition bg-white hover:bg-transparent border hover:border-white hover:text-white">

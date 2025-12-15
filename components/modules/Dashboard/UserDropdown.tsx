@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { logoutUser } from "@/services/auth/logoutUser";
 import { IUser } from "@/types/user.interface";
-import { Settings, User } from "lucide-react";
+import { User } from "lucide-react";
 import Link from "next/link";
 
 interface UserDropdownProps {
@@ -42,12 +42,12 @@ const UserDropdown = ({ userInfo }: UserDropdownProps) => {
             Profile
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        {/* <DropdownMenuItem asChild>
           <Link href={"/change-password"} className="cursor-pointer">
             <Settings className="mr-2 h-4 w-4" />
             Change Password
           </Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={handleLogout}

@@ -68,7 +68,7 @@ export const touristNavItems: NavSection[] = [
         items: [
             {
                 title: "My Bookings",
-                href: "/dashboard/bookings",
+                href: "/dashboard/my-bookings",
                 icon: "Calendar",
                 roles: [TUserRole.TOURIST],
             }

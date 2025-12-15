@@ -5,18 +5,10 @@ import RecentlyAddedTours from '@/components/modules/Home/RecentlyAddedTours';
 import Hero from '@/components/modules/Home/Hero';
 import TopToursSection from '@/components/modules/Home/TopTour/TopToursSection';
 import WhyChooseUs from '@/components/modules/Home/WhyChooseUs';
-import { queryStringFormatter } from '@/lib/formatters';
 import { getDiviosnStats, getNewTours, getTopTours } from '@/services/user/tour.services';
 
 
-const HomePage = async ({
-    searchParams,
-}: {
-    searchParams: { [key: string]: string | string[] | undefined };
-}) => {
-    const searchParamsObj = await searchParams;
-    const queryString = queryStringFormatter(searchParamsObj);
-
+const HomePage = async () => {
     const result = await getTopTours();
     const topTours = result?.data || [];
 

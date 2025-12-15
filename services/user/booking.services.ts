@@ -64,4 +64,20 @@ export async function createBookingAction(_prevState: any, formData: FormData) {
 }
 
 
+export async function getMybookings(queryString?: string) {
+    try {
+        const response = await serverFetch.get(`/bookings/my-bookings${queryString ? `?${queryString}` : ""}`);
+        const result = await response.json();
+
+        console.log('from my booking: ', result);
+        return result;
+    } catch (error: any) {
+        console.log(error);
+        return {
+            success: false,
+            message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
+        };
+    }
+}
+
 

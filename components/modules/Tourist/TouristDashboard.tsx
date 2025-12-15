@@ -6,12 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Heart, CalendarDays, User } from "lucide-react";
 import { ITourist } from "@/types/user.interface";
 import noImg from "@/assets/images/noImage.png"
+import { IBooking } from "@/types/booking.interface";
 
 interface TouristDashboardProps {
     userInfo: ITourist;
+    bookings: IBooking[]
 }
 
-export default function TouristDashboard({ userInfo }: TouristDashboardProps) {
+export default function TouristDashboard({ userInfo, bookings }: TouristDashboardProps) {
     return (
         <div className="space-y-8">
             {/* HEADER */}
@@ -59,7 +61,7 @@ export default function TouristDashboard({ userInfo }: TouristDashboardProps) {
                         <CalendarDays className="w-8 h-8 text-green-600" />
                         <div>
                             <p className="text-sm text-gray-500">Bookings</p>
-                            <p className="font-semibold">{userInfo?.bookings?.length}</p>
+                            <p className="font-semibold">{bookings.length}</p>
                         </div>
                     </CardContent>
                 </Card>
