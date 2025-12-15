@@ -9,6 +9,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { IBooking } from "@/types/booking.interface";
 import { ITour } from "@/types/tour.interface";
+import BookingReviewForm from "./BookingReviewForm";
 
 interface Props {
     open: boolean;
@@ -70,6 +71,8 @@ export default function BookingViewDetailDialog({ open, onClose, booking }: Prop
                     <InfoRow label="Pickup Location" value={booking.pickupLocation} />
                     <InfoRow label="Drop-off Location" value={booking.dropoffLocation} />
                 </div>
+
+                <BookingReviewForm booking={booking} />
 
                 {/* META */}
                 <div className="border-t pt-3 text-xs text-muted-foreground">

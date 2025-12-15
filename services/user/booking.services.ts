@@ -15,7 +15,7 @@ export async function checkAvailability({ tourId, startDate, endDate, persons }:
 
         const response = await serverFetch.get(`/availability/check?${query}`);
         const result = await response.json();
-        console.log('from server function response: ', result);
+
         return result;
     } catch (error: any) {
         console.log(error);
@@ -49,7 +49,7 @@ export async function createBookingAction(_prevState: any, formData: FormData) {
         })
         
         const result = await res.json();
-        console.log('from result creatw booking: ', result);
+
         return result;
     } catch (error: any) {
         console.log(error);
@@ -69,7 +69,6 @@ export async function getMybookings(queryString?: string) {
         const response = await serverFetch.get(`/bookings/my-bookings${queryString ? `?${queryString}` : ""}`);
         const result = await response.json();
 
-        console.log('from my booking: ', result);
         return result;
     } catch (error: any) {
         console.log(error);

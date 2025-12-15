@@ -4,7 +4,7 @@
 
 const TourEditPage = async ({ params, }: { params: Promise<{ slug: string }>; }) => {
     const { slug } = await params;
-    console.log('from slug edit: ', slug);
+
     // const tourData = await getTourBySlug(slug);
     return (
         // <TourDetailsView tour={tourData.data} />
