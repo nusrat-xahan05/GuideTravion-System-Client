@@ -12,16 +12,15 @@ export async function createReviewAction(_prevState: any, formData: FormData) {
             review: formData.get("review"),
         };
 
-        console.log('from payload: ', payload);
         const updatedpayload = JSON.stringify(payload)
-        console.log('from payload updatedpayload: ', updatedpayload);
-
         const res = await serverFetch.post(`/reviews`, {
             body: updatedpayload,
+            headers: {
+                "Content-Type": "application/json",
+            },
         });
 
         const result = await res.json();
-        console.log('from payload result: ', result);
         return result;
     } catch {
         return {
