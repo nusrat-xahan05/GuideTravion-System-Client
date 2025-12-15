@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { HeroProps } from "@/types/heroProps";
 import bgImage from "../../../assets/images/banner2.jpg"
 import bdImage from "../../../assets/images/bd-map.png"
 import Image from "next/image";
 import Link from "next/link";
+import { HeroSearch } from "@/components/shared/Home/HeroSearch";
+
 
 // HOMEPAGE BANNER PROPS ---------
 const defaultProps: HeroProps = {
@@ -23,11 +23,7 @@ const defaultProps: HeroProps = {
     buttons: {
         primary: { text: "Explore Tours" },
         secondary: { text: "Become a Guide" },
-    },
-    searchBar: {
-        placeholder: "Search destinations, tours, or experiences...",
-        buttonText: "Search",
-    },
+    }
 };
 
 export default function Hero(props: HeroProps = defaultProps) {
@@ -35,8 +31,7 @@ export default function Hero(props: HeroProps = defaultProps) {
         badge,
         heading,
         description,
-        buttons,
-        searchBar,
+        buttons
     } = { ...defaultProps, ...props };
 
     return (
@@ -119,7 +114,17 @@ export default function Hero(props: HeroProps = defaultProps) {
                     )}
                 </motion.div>
 
-                {/* Floating Search Bar */}
+
+                <motion.div
+                    initial={{ opacity: 0, y: 60 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                    className="mt-10 w-full flex justify-center"
+                >
+                    <HeroSearch />
+                </motion.div>
+
+                {/* Floating Search Bar
                 <motion.div
                     initial={{ opacity: 0, y: 60 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -137,7 +142,7 @@ export default function Hero(props: HeroProps = defaultProps) {
                             {searchBar?.buttonText}
                         </Button>
                     </div>
-                </motion.div>
+                </motion.div> */}
             </div>
         </section>
     );

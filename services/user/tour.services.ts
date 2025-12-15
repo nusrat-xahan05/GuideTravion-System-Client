@@ -199,6 +199,24 @@ export async function getAllActiveApprovedTours(queryString?: string) {
 }
 
 
+export async function getDiviosnStats() {
+    try {
+        const response = await serverFetch.get(`/tour/division-stats`,
+            { cache: "no-store" }
+        );
+
+        const result = await response.json();
+        return result;
+    } catch (error: any) {
+        console.log(error);
+        return {
+            success: false,
+            message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
+        };
+    }
+};
+
+
 export async function getTopTours() {
     try {
         const response = await serverFetch.get(`/tour/top-tours`,
