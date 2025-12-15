@@ -33,7 +33,6 @@ export default function DivisionSection({ divisionCounts }: Props) {
             {/* 2 rows → 4 cards per row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {DIVISIONS.map((division, index) => {
-                    console.log('from map: ', division);
                     const totalTours = divisionCounts[division.value] ?? 0;
 
                     return (
