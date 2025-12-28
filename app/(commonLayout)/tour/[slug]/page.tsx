@@ -12,7 +12,7 @@ const PublicTourDetailsPage = async ({ params, }: { params: Promise<{ slug: stri
 
 
     return (
-        <TourDetailsView tour={tourData.data} user={userRole} reviews={tourReviewData.data}>
+        <TourDetailsView tour={tourData.data} user={userRole} reviews={tourReviewData?.data}>
         </TourDetailsView>
     );
 };
