@@ -4,7 +4,6 @@
 import { serverFetch } from "@/lib/server-fetch";
 import { zodValidatorRequest } from "@/lib/zodValidateRequest";
 import { ActionResponse } from "@/types/response.interface";
-import { TTourStatusByAdmin } from "@/types/tour.interface";
 import { verifyTourStatusSchema } from "@/zod/tour.validation";
 import { revalidateTag } from "next/cache";
 

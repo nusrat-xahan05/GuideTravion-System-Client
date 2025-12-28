@@ -17,11 +17,13 @@ const initialState = {
 };
 
 export default function BookingReviewForm({ booking }: { booking: IBooking }) {
-    console.log('from review: ', booking.tourId);
+    console.log('from BookingReviewForm booking: ', booking);
+    console.log('from BookingReviewForm tourId: ', booking.tourId);
+
     const isEligible =
         booking.status === "COMPLETED" &&
-        booking.paymentStatus === "PAID"
-    // && !booking.isReviewed;
+        booking.paymentStatus === "PAID" &&
+        !booking.isReviewed;
 
     const [state, formAction, isPending] = useActionState(
         createReviewAction,

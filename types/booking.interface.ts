@@ -48,6 +48,7 @@ export interface IBooking {
     status: TBookingStatus;
     cancelledBy?: TCancelledBy;
     expiresAt?: Date | null;
+    isReviewed?: boolean;
 
     notes?: string;
     createdAt?: Date;

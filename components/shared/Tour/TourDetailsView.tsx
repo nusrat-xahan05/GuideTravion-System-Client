@@ -3,20 +3,23 @@
 
 import Image from "next/image";
 import noImage from "@/assets/images/noImage.png";
-import { MapPin, Clock, DollarSign, Users, Star } from "lucide-react";
+import { MapPin, Clock, DollarSign, Users, Star, User } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import AvailabilityCard from "./AvailabilityCard";
 import { ITour } from "@/types/tour.interface";
 import { TUserRole } from "@/types/user.interface";
+import { IReview } from "@/types/reviews.interface";
+import ReviewsSection from "../Reviews/ReviewsSection";
 
 
 
 interface TourDetailsViewProps {
     tour: ITour;
     user: TUserRole | null;
+    reviews: IReview[] | null;
 }
 
-export default function TourDetailsView({ tour, user }: TourDetailsViewProps) {
+export default function TourDetailsView({ tour, user, reviews }: TourDetailsViewProps) {
     return (
         <div className="max-w-7xl mx-auto px-4 py-10">
             {/* HERO IMAGE */}
@@ -46,7 +49,7 @@ export default function TourDetailsView({ tour, user }: TourDetailsViewProps) {
                                 icon={DollarSign}
                                 text={`${tour.pricePerPerson}৳ / person`}
                             />
-                            {tour.averageRating && (
+                            {tour.averageRating !== undefined && (
                                 <Meta
                                     icon={Star}
                                     text={`${tour.averageRating} (${tour.totalReviews} reviews)`}
@@ -91,7 +94,7 @@ export default function TourDetailsView({ tour, user }: TourDetailsViewProps) {
                     </div>
 
                     {/* ITINERARY */}
-                    {tour.itinerary?.length && (
+                    {tour.itinerary?.length ? (
                         <Section title="Itinerary">
                             <div className="space-y-4">
                                 {tour.itinerary.map((day, i) => (
@@ -108,12 +111,54 @@ export default function TourDetailsView({ tour, user }: TourDetailsViewProps) {
                                 ))}
                             </div>
                         </Section>
-                    )}
+                    ) : null}
+
+                    {/* REVIEWS */}
+                    {reviews?.length ? (
+                        <ReviewsSection
+                            reviews={reviews}
+                            averageRating={tour.averageRating}
+                            totalReviews={tour.totalReviews}
+                        />
+                    ) : null}
                 </div>
 
                 {/* RIGHT SIDEBAR */}
-                <div className="lg:sticky top-24 h-fit">
+                <div className="lg:sticky top-24 h-fit space-y-5">
                     <AvailabilityCard tour={tour} user={user} />
+
+                    {/* GUIDE INFO */}
+                    <div className="border rounded-xl p-5 space-y-4">
+                        <h3 className="text-lg font-semibold">Tour Guide Information</h3>
+                        <div className="flex gap-5 items-start">
+                            <Image
+                                src={tour.user?.profileImage || noImage}
+                                alt={tour.user?.firstName || "Guide"}
+                                width={80}
+                                height={80}
+                                className="rounded-full object-cover border border-amber-800"
+                            />
+
+                            <div className="space-y-2">
+                                <h3 className="font-semibold text-lg flex items-center gap-2">
+                                    <User className="w-5 h-5" />
+                                    {tour.user?.firstName} {tour.user?.lastName}
+                                </h3>
+                                <p className="text-sm text-muted-foreground">
+                                    {tour.guide?.occupation}
+                                </p>
+                                <p className="text-sm">
+                                    📍 {tour.guide?.city}
+                                </p>
+                                <p className="text-sm">
+                                    ⭐ {tour.guide?.rating} ({tour?.guide?.totalReviews} reviews)
+                                </p>
+                                <p className="text-sm">
+                                    Experience: {tour?.guide?.yearsOfExperience} years
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
