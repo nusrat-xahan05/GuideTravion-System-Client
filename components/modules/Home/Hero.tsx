@@ -125,26 +125,6 @@ export default function Hero(props: HeroProps = defaultProps) {
                 >
                     <HeroSearch />
                 </motion.div>
-
-                {/* Floating Search Bar
-                <motion.div
-                    initial={{ opacity: 0, y: 60 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 }}
-                    className="mt-10 w-full flex justify-center"
-                >
-                    <div className="bg-white/95 shadow-md backdrop-blur-sm p-4 rounded-xl w-[90%] md:w-[60%] flex gap-3">
-                        <Input
-                            type="text"
-                            placeholder={searchBar?.placeholder}
-                            className="flex-1 outline-none text-gray-500"
-                        />
-                        <Button className="px-5 bg-primary hover:bg-blue-800 flex items-center gap-2 font-semibold">
-                            <Search size={18} />
-                            {searchBar?.buttonText}
-                        </Button>
-                    </div>
-                </motion.div> */}
             </div>
         </section>
     );
