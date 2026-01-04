@@ -2,9 +2,9 @@
 
 import ManagementTable from "@/components/shared/ManagementPage/ManagementTable";
 import { IBooking } from "@/types/booking.interface";
-import { bookingsColumn } from "./bookingsColumn";
-import BookingViewDetailDialog from "./BookingViewDetailDialog";
 import { useState } from "react";
+import BookingsViewDetailDialog from "./BookingsViewDetailsDialog";
+import { BookingsColumns } from "./BookingsColumns";
 
 
 
@@ -29,18 +29,17 @@ const BookingsTable = ({ bookings }: BookingsTableProps) => {
     };
 
 
-
     return (
         <>
             <ManagementTable
                 data={bookings}
-                columns={bookingsColumn}
+                columns={BookingsColumns}
                 onView={handleView}
                 getRowKey={(bookings) => bookings._id!}
                 emptyMessage="No Bookings Found"
             />
 
-            <BookingViewDetailDialog
+            <BookingsViewDetailDialog
                 open={!!viewingBooking}
                 booking={viewingBooking}
                 onClose={() => setViewingBooking(null)}

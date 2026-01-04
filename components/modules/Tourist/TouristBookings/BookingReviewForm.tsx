@@ -55,7 +55,7 @@ export default function BookingReviewForm({ booking }: { booking: IBooking }) {
             <input type="hidden" name="bookingId" value={booking._id} />
             <input type="hidden" name="tourId" value={typeof booking.tourId === "string"
                 ? booking.tourId
-                : booking.tourId._id} />
+                : booking.tour._id} />
 
             {/* Rating */}
             <div>

@@ -1,5 +1,6 @@
 import { TPaymentStatus } from "./payment.interface";
 import { ITour } from "./tour.interface";
+import { IGuide, ITourist, IUser } from "./user.interface";
 
 export interface CheckAvailabilityParams {
     tourId: string;
@@ -26,9 +27,13 @@ export enum TCancelledBy {
 export interface IBooking {
     _id?: string;
 
-    tourId: string | ITour;
-    guideId: string;   // user id that acts as guide (matches GuideModel _id)
+    tourId: string;
+    tour: ITour;
+    guideId: string | IUser;
+    guide: IGuide;
+    guideUser: IUser;
     touristId: string; // user id of tourist
+    tourist: string | ITourist | IUser; // user id of tourist
 
     startDate: Date; // start of booking (date/time)
     endDate: Date;   // end of booking (date/time)         
@@ -53,4 +58,5 @@ export interface IBooking {
     notes?: string;
     createdAt?: Date;
     updatedAt?: Date;
+    completedAt?: Date;
 }

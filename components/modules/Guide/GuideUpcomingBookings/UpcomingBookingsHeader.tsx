@@ -1,18 +1,18 @@
 import ManagementPageHeader from "@/components/shared/ManagementPage/ManagementPageHeader";
 
 
-const BookingManagementHeader = () => {
+const UpcomingBookingsHeader = () => {
 
     return (
         <>
             <div className="space-y-3">
                 <ManagementPageHeader
-                    title="All Booking Record"
-                    description="See Booking information and details"
+                    title="All Upcoming Booked Tours Record"
+                    description="See Tours Booking information and details"
                 />
             </div>
         </>
     );
 };
 
-export default BookingManagementHeader;
+export default UpcomingBookingsHeader;

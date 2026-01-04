@@ -24,7 +24,7 @@ const GuideTourFilters = () => {
 
             {/* Search */}
             <div className="flex items-center gap-3 flex-wrap">
-                <SearchFilter paramName="searchTerm" placeholder="Search by place name..." />
+                <SearchFilter paramName="search" placeholder="Search by place name..." />
                 <SearchFilter paramName="division" placeholder="Division" />
                 <RefreshButton />
             </div>

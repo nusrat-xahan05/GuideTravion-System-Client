@@ -5,12 +5,20 @@ import { Column } from "@/components/shared/ManagementPage/ManagementTable";
 // import { UserInfoCell } from "@/components/shared/Table/cell/UserInfoCell";
 import { IBooking } from "@/types/booking.interface";
 
-export const bookingsColumn: Column<IBooking>[] = [
+export const BookingsColumns: Column<IBooking>[] = [
     {
         header: "Tour",
         accessor: (bookings) => (
             <span className="text-sm font-medium">
-                {(bookings as any).tourId.title}
+                {(bookings as any).tour.title}
+            </span>
+        ),
+    },
+    {
+        header: "Guide",
+        accessor: (bookings) => (
+            <span className="text-sm font-medium">
+                {(bookings as any).guideUser.email}
             </span>
         ),
     },
@@ -28,18 +36,6 @@ export const bookingsColumn: Column<IBooking>[] = [
             <span className="text-sm font-medium">
                 {bookings?.totalAmount}
             </span>
-        ),
-    },
-    {
-        header: "Booking",
-        accessor: (bookings) => (
-            <span className="text-sm bg-red-50">{bookings?.status}</span>
-        ),
-    },
-    {
-        header: "Payment",
-        accessor: (bookings) => (
-            <span className="text-sm bg-red-50">{bookings?.paymentStatus}</span>
         ),
     },
     {

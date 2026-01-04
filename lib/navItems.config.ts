@@ -51,27 +51,52 @@ export const guideNavItems: NavSection[] = [
         title: "Bookings",
         items: [
             {
-                title: "Confirmed Bookings",
-                href: "/guide/dashboard/booked-tours",
-                icon: "CheckCircle",
+                title: "Upcoming Bookings",
+                href: "/guide/dashboard/upcoming-booked-tours",
+                icon: "CalendarClock",
                 roles: [TUserRole.GUIDE],
-            }
+            },
+            {
+                title: "Ongoing Bookings",
+                href: "/guide/dashboard/active-booked-tours",
+                icon: "PlayCircle",
+                roles: [TUserRole.GUIDE],
+                badge: "live",
+            },
+            {
+                title: "Completed Bookings",
+                href: "/guide/dashboard/completed-booked-tours",
+                icon: "CircleCheckBig",
+                roles: [TUserRole.GUIDE],
+            },
+            {
+                title: "Cancelled Bookings",
+                href: "/guide/dashboard/cancelled-booked-tours",
+                icon: "XCircle",
+                roles: [TUserRole.GUIDE],
+            },
         ],
-    }
+    },
 ];
 
 
 
 export const touristNavItems: NavSection[] = [
     {
-        title: "Explore & Book",
+        title: "Explore Bookings",
         items: [
             {
-                title: "My Bookings",
-                href: "/dashboard/my-bookings",
-                icon: "Calendar",
+                title: "Upcoming Bookings",
+                href: "/dashboard/upcoming-booked-tours",
+                icon: "CalendarClock",
                 roles: [TUserRole.TOURIST],
-            }
+            },
+            {
+                title: "Cancelled Bookings",
+                href: "/dashboard/cancelled-booked-tours",
+                icon: "XCircle",
+                roles: [TUserRole.TOURIST],
+            },
         ],
     }
 ];

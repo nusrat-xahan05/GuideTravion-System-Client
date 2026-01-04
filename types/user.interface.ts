@@ -21,7 +21,7 @@ export enum TVerificationReqStatus {
 };
 
 export interface IUser {
-    _id?: string;
+    _id?: string | IUser;
     firstName: string;
     lastName?: string;
     email: string;
@@ -60,6 +60,7 @@ export interface IGuide extends IUser {
     rating?: number;
     totalReviews?: number;
     user?: IUser;
+    _id?: IUser;
     // availability?: any[];
 }
 

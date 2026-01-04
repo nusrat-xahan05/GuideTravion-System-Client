@@ -64,9 +64,9 @@ export async function createBookingAction(_prevState: any, formData: FormData) {
 }
 
 
-export async function getMybookings(queryString?: string) {
+export async function getActiveBookedTours(queryString?: string) {
     try {
-        const response = await serverFetch.get(`/bookings/my-bookings${queryString ? `?${queryString}` : ""}`);
+        const response = await serverFetch.get(`/bookings/active-booked-tours${queryString ? `?${queryString}` : ""}`);
         const result = await response.json();
 
         return result;
@@ -78,5 +78,69 @@ export async function getMybookings(queryString?: string) {
         };
     }
 }
+
+
+export async function getUpcomingBookedTours(queryString?: string) {
+    try {
+        const response = await serverFetch.get(`/bookings/upcoming-booked-tours${queryString ? `?${queryString}` : ""}`);
+        const result = await response.json();
+
+        return result;
+    } catch (error: any) {
+        console.log(error);
+        return {
+            success: false,
+            message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
+        };
+    }
+}
+
+
+export async function getCompletedBookedTours(queryString?: string) {
+    try {
+        const response = await serverFetch.get(`/bookings/completed-booked-tours${queryString ? `?${queryString}` : ""}`);
+        const result = await response.json();
+
+        return result;
+    } catch (error: any) {
+        console.log(error);
+        return {
+            success: false,
+            message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
+        };
+    }
+}
+
+
+export async function getCancelledBookedTours(queryString?: string) {
+    try {
+        const response = await serverFetch.get(`/bookings/cancelled-booked-tours${queryString ? `?${queryString}` : ""}`);
+        const result = await response.json();
+
+        return result;
+    } catch (error: any) {
+        console.log(error);
+        return {
+            success: false,
+            message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
+        };
+    }
+}
+
+
+// export async function getMybookings(queryString?: string) {
+//     try {
+//         const response = await serverFetch.get(`/bookings/my-bookings${queryString ? `?${queryString}` : ""}`);
+//         const result = await response.json();
+
+//         return result;
+//     } catch (error: any) {
+//         console.log(error);
+//         return {
+//             success: false,
+//             message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
+//         };
+//     }
+// }
 
 
