@@ -6,13 +6,20 @@ import Link from "next/link";
 import { MapPin, Star, Clock } from "lucide-react";
 import noImage from "@/assets/images/noImage.png";
 import { ITour } from "@/types/tour.interface";
+import { WishlistButton } from "@/components/shared/WishlistButton";
+import { TUserRole } from "@/types/user.interface";
 
 interface TopTourCardProps {
     tour: ITour;
     index: number;
+    wishlistIds: string[];
+    user: TUserRole | null;
 }
 
-export default function TopTourCard({ tour, index }: TopTourCardProps) {
+export default function TopTourCard({ tour, index, wishlistIds, user }: TopTourCardProps) {
+
+    console.log('from top tour card: ', wishlistIds);
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -39,6 +46,16 @@ export default function TopTourCard({ tour, index }: TopTourCardProps) {
                                 {tour.averageRating.toFixed(1)}
                             </div>
                         )}
+
+                        <div className="absolute top-3 right-3 z-10">
+                            <WishlistButton
+                                tourId={tour._id as string}
+                                initiallyWishlisted={
+                                    wishlistIds.includes(tour._id as string)
+                                }
+                                user={user}
+                            />
+                        </div>
                     </div>
 
                     {/* CONTENT */}

@@ -6,9 +6,13 @@ import Hero from '@/components/modules/Home/Hero';
 import TopToursSection from '@/components/modules/Home/TopTour/TopToursSection';
 import WhyChooseUs from '@/components/modules/Home/WhyChooseUs';
 import { getDiviosnStats, getNewTours, getTopTours } from '@/services/user/tour.services';
+import { getMyWishlist } from '@/services/user/wishlist.service';
+import { getUserRole } from '@/services/auth/getUserRole';
 
 
 const HomePage = async () => {
+    const wishlistIds = await getMyWishlist();
+    const user = await getUserRole();
     const result = await getTopTours();
     const topTours = result?.data || [];
 
@@ -24,7 +28,7 @@ const HomePage = async () => {
         <div>
             <Hero></Hero>
             <WhyChooseUs></WhyChooseUs>
-            <TopToursSection topTours={topTours} />
+            <TopToursSection topTours={topTours} wishlistIds={wishlistIds} user={user} />
             <CTASection></CTASection>
             <RecentlyAddedTours newTours={newTours.data}></RecentlyAddedTours>
             <DivisionSection divisionCounts={divisionCounts} />
