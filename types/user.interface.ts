@@ -60,7 +60,7 @@ export interface IGuide extends IUser {
     rating?: number;
     totalReviews?: number;
     user?: IUser;
-    _id?: IUser;
+    _id?: IUser | string;
     // availability?: any[];
 }
 

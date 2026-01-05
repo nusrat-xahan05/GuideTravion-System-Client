@@ -92,6 +92,12 @@ export const touristNavItems: NavSection[] = [
                 roles: [TUserRole.TOURIST],
             },
             {
+                title: "Past Bookings",
+                href: "/dashboard/past-booked-tours",
+                icon: "CircleCheckBig",
+                roles: [TUserRole.TOURIST],
+            },
+            {
                 title: "Cancelled Bookings",
                 href: "/dashboard/cancelled-booked-tours",
                 icon: "XCircle",

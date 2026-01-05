@@ -43,7 +43,7 @@ const GuidesTable = ({ guides }: GuidesTableProps) => {
         columns={guidesColumns}
         onView={handleView}
         onEdit={handleEdit}
-        getRowKey={(guide) => guide._id!}
+        getRowKey={(guide) => guide._id as string}
         emptyMessage="No Guides Found"
       />
       {/* Edit Guide Form Dialog */}

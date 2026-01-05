@@ -36,7 +36,7 @@ const VerifyGuidesTable = ({ guides }: GuidesTableProps) => {
                 data={guides}
                 columns={VerifyGuideColumns}
                 onEdit={handleViewEdit}
-                getRowKey={(guide) => guide._id!}
+                getRowKey={(guide) => guide._id as string}
                 emptyMessage="No Guides Found"
             />
 

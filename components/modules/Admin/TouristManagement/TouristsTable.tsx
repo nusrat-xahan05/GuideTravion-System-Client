@@ -42,7 +42,7 @@ const TouristsTable = ({ tourists }: TouristsTableProps) => {
         columns={touristsColumns}
         onView={handleView}
         onEdit={handleEdit}
-        getRowKey={(tourist) => tourist._id!}
+        getRowKey={(tourist) => tourist._id as string}
         emptyMessage="No Guides Found"
       />
       {/* Edit Tourist Form Dialog */}
