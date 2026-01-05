@@ -9,6 +9,7 @@ import DateRangePicker from "./DateRangePicker";
 import { TUserRole } from "@/types/user.interface";
 import { ITour } from "@/types/tour.interface";
 import { checkAvailability } from "@/services/user/booking.services";
+import { formatDateOnly } from "@/lib/formatDateOnly";
 
 
 interface AvailabilityCardProps {
@@ -39,22 +40,30 @@ export default function AvailabilityCard({ tour, user }: AvailabilityCardProps) 
             return;
         }
 
+        console.log('from availability card: ', dateRange.from);
+        console.log('from availability card: ', dateRange.to);
+
         setLoading(true);
         try {
             const result = await checkAvailability({
                 tourId: tour._id as string,
-                startDate: dateRange.from,
-                endDate: dateRange.to,
+                // startDate: dateRange.from,
+                startDate: formatDateOnly(dateRange.from),
+                // endDate: dateRange.to,
+                endDate: formatDateOnly(dateRange.to),
                 persons: persons
             });
             if (result.success) {
                 if (result.data.available) {
                     toast.success(result.data.message);
+                    // router.push(
+                    //     `/tour/${tour.slug}/booking?startDate=${dateRange.from.toISOString()}&endDate=${dateRange.to.toISOString()}&persons=${persons}`
+                    // );
                     router.push(
-                        `/tour/${tour.slug}/booking?startDate=${dateRange.from.toISOString()}&endDate=${dateRange.to.toISOString()}&persons=${persons}`
+                        `/tour/${tour.slug}/booking?startDate=${formatDateOnly(dateRange.from)}&endDate=${formatDateOnly(dateRange.to)}&persons=${persons}`
                     );
                 }
-                else{
+                else {
                     toast.error(result.data.message);
                 }
             }

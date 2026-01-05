@@ -4,8 +4,8 @@ import { IGuide, ITourist, IUser } from "./user.interface";
 
 export interface CheckAvailabilityParams {
     tourId: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: Date | string;
+    endDate: Date | string;
     persons: number;
 }
 
@@ -35,8 +35,8 @@ export interface IBooking {
     touristId: string; // user id of tourist
     tourist: string | ITourist | IUser; // user id of tourist
 
-    startDate: Date; // start of booking (date/time)
-    endDate: Date;   // end of booking (date/time)         
+    startDate: Date | string; // start of booking (date/time)
+    endDate: Date | string;   // end of booking (date/time)         
 
     meetingTime?: string;      // optional, time of meeting (e.g. "09:30")
     pickupLocation?: string;
