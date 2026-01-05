@@ -28,7 +28,6 @@ export async function getMyWishlist() {
 
 export async function toggleWishlist(tourId: string) {
     try {
-        console.log('from services tourId: ', JSON.stringify({ tourId: tourId }));
         const response = await serverFetch.post(`/wishlist/toggleWishlist`, {
             headers: {
                 "Content-Type": "application/json",

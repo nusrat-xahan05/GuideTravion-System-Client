@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Image from "next/image";
@@ -9,10 +8,18 @@ import { ITour } from "@/types/tour.interface";
 import noImg from "@/assets/images/noImage.png"
 import Link from "next/link";
 import { MapPin } from "lucide-react";
+import { TUserRole } from "@/types/user.interface";
+import { WishlistButton } from "@/components/shared/WishlistButton";
 
 
+interface Props {
+    newTours: ITour[];
+    wishlistIds: string[];
+    user: TUserRole | null;
+}
 
-export default function RecentlyAddedTours({ newTours }: any) {
+
+export default function RecentlyAddedTours({ newTours, wishlistIds, user }: Props) {
     return (
         <section className="py-16 px-4 md:px-8 lg:px-16">
             <SectionTitle title="Recently Added" subtitle="Explore the lastest trust worthy experiences" />
@@ -40,6 +47,16 @@ export default function RecentlyAddedTours({ newTours }: any) {
                                         fill
                                         className="object-cover"
                                     />
+
+                                    <div className="absolute top-3 right-3 z-10">
+                                        <WishlistButton
+                                            tourId={tour._id as string}
+                                            initiallyWishlisted={
+                                                wishlistIds.includes(tour._id as string)
+                                            }
+                                            user={user}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="p-5 space-y-3 flex flex-col flex-1">
                                     <h3 className="text-lg font-semibold">{tour.title}</h3>

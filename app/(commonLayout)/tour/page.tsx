@@ -6,12 +6,17 @@ import TourCardSkeleton from "@/components/shared/Tour/TourCardSkeleton";
 import PublicTourPageHeader from "@/components/modules/AllTours/PublicTourPageHeader";
 import AllToursFiltersSidebar from "@/components/modules/AllTours/AllToursFiltersSidebar";
 import ToursPagination from "@/components/shared/Tour/ToursPagination";
+import { getMyWishlist } from "@/services/user/wishlist.service";
+import { getUserRole } from "@/services/auth/getUserRole";
 
 const TourPage = async ({
     searchParams,
 }: {
     searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) => {
+    const wishlistIds = await getMyWishlist();
+    const user = await getUserRole();
+
     const params = await searchParams;
     const queryString = queryStringFormatter(params);
 
@@ -34,7 +39,7 @@ const TourPage = async ({
                 <div className="col-span-12 md:col-span-9">
                     <PublicTourPageHeader />
                     <Suspense fallback={<TourCardSkeleton items={8} />}>
-                        <PublicTourList tours={toursResult.data.data}></PublicTourList>
+                        <PublicTourList tours={toursResult.data.data} wishlistIds={wishlistIds} user={user}></PublicTourList>
                         <ToursPagination
                             currentPage={toursResult?.data?.meta?.page || 1}
                             totalPages={totalPages}

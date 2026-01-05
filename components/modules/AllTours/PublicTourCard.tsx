@@ -4,8 +4,17 @@ import { ITour } from "@/types/tour.interface";
 import { Button } from "@/components/ui/button";
 import noImage from "@/assets/images/noImage.png";
 import { DollarSign, MapPin, Star, CalendarDays, Users, } from "lucide-react";
+import { TUserRole } from "@/types/user.interface";
+import { WishlistButton } from "@/components/shared/WishlistButton";
 
-export default function PublicTourCard({ tour }: { tour: ITour }) {
+
+interface Props {
+    tour: ITour;
+    wishlistIds: string[];
+    user: TUserRole | null;
+}
+
+export default function PublicTourCard({ tour, wishlistIds, user }: Props) {
 
     return (
         <div className="flex gap-6 rounded-xl border bg-white shadow-sm hover:shadow-lg transition-all p-4">
@@ -17,6 +26,16 @@ export default function PublicTourCard({ tour }: { tour: ITour }) {
                     fill
                     className="object-cover"
                 />
+
+                <div className="absolute top-3 left-3 z-10">
+                    <WishlistButton
+                        tourId={tour._id as string}
+                        initiallyWishlisted={
+                            wishlistIds.includes(tour._id as string)
+                        }
+                        user={user}
+                    />
+                </div>
             </div>
 
             {/* RIGHT CONTENT */}
