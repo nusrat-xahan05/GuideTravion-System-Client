@@ -14,6 +14,7 @@ interface TouristDashboardProps {
 }
 
 export default function TouristDashboard({ userInfo, bookings }: TouristDashboardProps) {
+    
     return (
         <div className="space-y-8">
             {/* HEADER */}
@@ -61,7 +62,7 @@ export default function TouristDashboard({ userInfo, bookings }: TouristDashboar
                         <CalendarDays className="w-8 h-8 text-green-600" />
                         <div>
                             <p className="text-sm text-gray-500">Bookings</p>
-                            <p className="font-semibold">{bookings.length}</p>
+                            <p className="font-semibold">{bookings?.length}</p>
                         </div>
                     </CardContent>
                 </Card>

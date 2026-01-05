@@ -10,7 +10,7 @@ const TouristDashboardPage = async () => {
     
     return (
         <div className="p-6">
-            <TouristDashboard userInfo={userInfo} bookings={bookingResult.data} />
+            <TouristDashboard userInfo={userInfo} bookings={bookingResult?.data?.data} />
         </div>
     );
 };
