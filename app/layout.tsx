@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import { Suspense } from "react";
 import LoginSuccessToast from "@/components/shared/Auth/LoginSuccessToast";
 import LogoutSuccessToast from "@/components/shared/Auth/LogoutSuccessToast";
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <NextTopLoader
+          color="#2563eb"
+          height={3}
+          showSpinner={false}
+        />
         {children}
         <Toaster position="bottom-right" richColors />
         <Suspense fallback={null}>
