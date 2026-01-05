@@ -83,6 +83,17 @@ export const guideNavItems: NavSection[] = [
 
 export const touristNavItems: NavSection[] = [
     {
+        title: "Wishlist",
+        items: [
+            {
+                title: "My Wishlist",
+                href: "/dashboard/my-wishlist",
+                icon: "CalendarClock",
+                roles: [TUserRole.TOURIST],
+            },
+        ]
+    },
+    {
         title: "Explore Bookings",
         items: [
             {

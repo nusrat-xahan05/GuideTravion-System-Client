@@ -18,8 +18,6 @@ interface TopTourCardProps {
 
 export default function TopTourCard({ tour, index, wishlistIds, user }: TopTourCardProps) {
 
-    console.log('from top tour card: ', wishlistIds);
-
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
