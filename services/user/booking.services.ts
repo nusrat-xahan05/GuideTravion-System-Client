@@ -5,7 +5,6 @@ import { CheckAvailabilityParams } from "@/types/booking.interface";
 
 
 export async function checkAvailability({ tourId, startDate, endDate, persons }: CheckAvailabilityParams) {
-    console.log('from service: ', startDate, endDate)
     try {
         const query = new URLSearchParams({
             tourId,
@@ -13,13 +12,6 @@ export async function checkAvailability({ tourId, startDate, endDate, persons }:
             endDate: endDate.toString(),
             persons: persons.toString(),
         });
-
-        // const query = new URLSearchParams({
-        //     tourId,
-        //     startDate: startDate.toISOString(),
-        //     endDate: endDate.toISOString(),
-        //     persons: persons.toString(),
-        // }).toString();
 
         const response = await serverFetch.get(`/availability/check?${query}`);
         const result = await response.json();
