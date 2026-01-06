@@ -47,6 +47,7 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
         <div className="flex items-center justify-center gap-2">
             <Button
                 variant="outline"
+                className="cursor-pointer"
                 size="sm"
                 onClick={() => navigateToPage(currentPage - 1)}
                 disabled={currentPage <= 1 || isPending}
@@ -75,7 +76,7 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
                             size="sm"
                             onClick={() => navigateToPage(pageNumber)}
                             disabled={isPending}
-                            className="w-10"
+                            className="w-10 cursor-pointer"
                         >
                             {pageNumber}
                         </Button>
@@ -85,6 +86,7 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
 
             <Button
                 variant="outline"
+                className="cursor-pointer"
                 size="sm"
                 onClick={() => navigateToPage(currentPage + 1)}
                 disabled={currentPage === totalPages || isPending}

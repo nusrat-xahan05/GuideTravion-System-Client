@@ -420,6 +420,7 @@ export default function MyEditProfile({ userInfo }: Props) {
                                             <Button
                                                 formAction={verifyAction}
                                                 type="submit"
+                                                className="cursor-pointer"
                                                 disabled={!canSendVerification || isVerifying || (userInfo as IGuide).verificationRequest === TVerificationReqStatus.APPROVED || (userInfo as IGuide).verificationRequest === TVerificationReqStatus.PENDING}
                                             >
                                                 {isVerifying ? "Sending..." : "Send Verification Request"}

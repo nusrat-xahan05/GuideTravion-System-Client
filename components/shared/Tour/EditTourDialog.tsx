@@ -256,10 +256,10 @@ export default function EditTourDialog({ open, onClose, onSuccess, tour }: Props
 
                     {/* ================= FOOTER ================= */}
                     <div className="p-6 border-t bg-gray-50 flex justify-end gap-2">
-                        <Button variant="outline" type="button" onClick={onClose} disabled={pending}>
+                        <Button className="cursor-pointer" variant="outline" type="button" onClick={onClose} disabled={pending}>
                             Cancel
                         </Button>
-                        <Button type="submit" disabled={pending}>
+                        <Button className="cursor-pointer" type="submit" disabled={pending}>
                             {pending ? "Updating..." : "Update Tour"}
                         </Button>
                     </div>

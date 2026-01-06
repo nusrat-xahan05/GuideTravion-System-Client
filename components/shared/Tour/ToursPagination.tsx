@@ -31,6 +31,7 @@ const ToursPagination = ({ currentPage, totalPages }: ToursPaginationProps) => {
             {/* Previous Button */}
             <Button
                 variant="outline"
+                className="cursor-pointer"
                 size="sm"
                 disabled={currentPage <= 1 || isPending}
                 onClick={() => navigateToPage(currentPage - 1)}
@@ -61,7 +62,7 @@ const ToursPagination = ({ currentPage, totalPages }: ToursPaginationProps) => {
                             size="sm"
                             onClick={() => navigateToPage(pageNumber)}
                             disabled={isPending}
-                            className="w-10"
+                            className="w-10 cursor-pointer"
                         >
                             {pageNumber}
                         </Button>
@@ -72,6 +73,7 @@ const ToursPagination = ({ currentPage, totalPages }: ToursPaginationProps) => {
             {/* Next Button */}
             <Button
                 variant="outline"
+                className="cursor-pointer"
                 size="sm"
                 disabled={currentPage >= totalPages || isPending}
                 onClick={() => navigateToPage(currentPage + 1)}

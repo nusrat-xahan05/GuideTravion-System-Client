@@ -44,14 +44,14 @@ function NotFoundContent() {
                         size="lg"
                         onClick={() => router.back()}
                         variant="outline"
-                        className="gap-2"
+                        className="gap-2 cursor-pointer"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Go Back
                     </Button>
                     <Button size="lg" asChild className="gap-2">
                         <Link href="/">
-                            <Home className="h-4 w-4" />
+                            <Home className="h-4 w-4 cursor-pointer" />
                             Back to Home
                         </Link>
                     </Button>

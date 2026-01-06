@@ -496,8 +496,8 @@ export default function TourCreateDialog({
 
           {/* footer */}
           <div className="flex justify-end gap-2 px-6 py-4 border-t bg-gray-50">
-            <Button variant="outline" type="button" onClick={onClose} disabled={pending}>Cancel</Button>
-            <Button type="submit" disabled={pending}>{pending ? "Creating..." : "Create Tour"}</Button>
+            <Button className="cursor-pointer" variant="outline" type="button" onClick={onClose} disabled={pending}>Cancel</Button>
+            <Button className="cursor-pointer" type="submit" disabled={pending}>{pending ? "Creating..." : "Create Tour"}</Button>
           </div>
         </form>
       </DialogContent>

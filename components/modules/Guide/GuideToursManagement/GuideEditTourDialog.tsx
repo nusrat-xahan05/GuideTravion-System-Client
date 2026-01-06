@@ -197,7 +197,7 @@ export default function GuideEditTourDialog({ open, onClose, onSuccess, tour }: 
                                     <CircleMinus className="text-red-500 cursor-pointer" onClick={() => removeItem(setHighlights, i)} />
                                 </div>
                             ))}
-                            <button type="button" className="text-blue-600 text-sm mt-2" onClick={() => addItem(setHighlights)}>
+                            <button type="button" className="text-blue-600 text-sm mt-2 cursor-pointer" onClick={() => addItem(setHighlights)}>
                                 + Add Highlight
                             </button>
                         </Field>
@@ -211,7 +211,7 @@ export default function GuideEditTourDialog({ open, onClose, onSuccess, tour }: 
                                     <CircleMinus className="text-red-500 cursor-pointer" onClick={() => removeItem(setIncludesArr, i)} />
                                 </div>
                             ))}
-                            <button type="button" className="text-blue-600 text-sm mt-2" onClick={() => addItem(setIncludesArr)}>
+                            <button type="button" className="text-blue-600 text-sm mt-2 cursor-pointer" onClick={() => addItem(setIncludesArr)}>
                                 + Add Include
                             </button>
                         </Field>
@@ -225,7 +225,7 @@ export default function GuideEditTourDialog({ open, onClose, onSuccess, tour }: 
                                     <CircleMinus className="text-red-500 cursor-pointer" onClick={() => removeItem(setExcludesArr, i)} />
                                 </div>
                             ))}
-                            <button type="button" className="text-blue-600 text-sm mt-2" onClick={() => addItem(setExcludesArr)}>
+                            <button type="button" className="text-blue-600 text-sm mt-2 cursor-pointer" onClick={() => addItem(setExcludesArr)}>
                                 + Add Exclude
                             </button>
                         </Field>
@@ -256,10 +256,10 @@ export default function GuideEditTourDialog({ open, onClose, onSuccess, tour }: 
 
                     {/* ================= FOOTER ================= */}
                     <div className="p-6 border-t bg-gray-50 flex justify-end gap-2">
-                        <Button variant="outline" type="button" onClick={onClose} disabled={pending}>
+                        <Button className="cursor-pointer" variant="outline" type="button" onClick={onClose} disabled={pending}>
                             Cancel
                         </Button>
-                        <Button type="submit" disabled={pending}>
+                        <Button className="cursor-pointer" type="submit" disabled={pending}>
                             {pending ? "Updating..." : "Update Tour"}
                         </Button>
                     </div>

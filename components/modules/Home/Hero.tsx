@@ -98,7 +98,7 @@ export default function Hero(props: HeroProps = defaultProps) {
                 >
                     {buttons?.primary && (
                         <Link href={'/tour'}>
-                            <Button className="px-8 py-6 text-[17px] font-semibold text-white transition bg-blue-800 hover:bg-blue-800 border border-blue-800">
+                            <Button className="px-8 py-6 text-[17px] font-semibold text-white transition bg-blue-800 hover:bg-blue-800 border border-blue-800 cursor-pointer">
                                 {buttons.primary.text}
                             </Button>
                         </Link>
@@ -108,7 +108,7 @@ export default function Hero(props: HeroProps = defaultProps) {
                         <Link href={'/register/guide'}>
                             <Button
                                 variant="outline"
-                                className="px-8 py-6 text-[17px] font-semibold text-white bg-white/20 border border-white"
+                                className="px-8 py-6 text-[17px] font-semibold text-white bg-white/20 border border-white cursor-pointer"
                             >
                                 {buttons.secondary.text}
                             </Button>

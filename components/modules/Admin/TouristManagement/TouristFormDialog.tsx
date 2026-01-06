@@ -105,10 +105,10 @@ const TouristFormDialog = ({ open, onClose, onSuccess, tourist }: ITouristFormDi
 
                     {/* FOOTER BUTTONS */}
                     <div className="flex justify-end gap-2 border-t bg-gray-50 pt-4">
-                        <Button type="button" variant="outline" onClick={onClose} disabled={pending}>
+                        <Button className="cursor-pointer" type="button" variant="outline" onClick={onClose} disabled={pending}>
                             Cancel
                         </Button>
-                        <Button type="submit" disabled={pending}>
+                        <Button className="cursor-pointer" type="submit" disabled={pending}>
                             {pending ? "Saving..." : "Update Tourist"}
                         </Button>
                     </div>

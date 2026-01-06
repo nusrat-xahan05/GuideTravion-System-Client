@@ -54,12 +54,12 @@ const Navbar = async () => {
                             <Link href="/register/tourist">
                                 <Button
                                     variant="outline"
-                                    className="rounded-xl px-7 text-[14px] border-blue-700 text-blue-600 hover:bg-blue-50">
+                                    className="rounded-xl px-7 text-[14px] border-blue-700 text-blue-600 hover:bg-blue-50 cursor-pointer">
                                     Register
                                 </Button>
                             </Link>
                             <Link href="/login">
-                                <Button className="rounded-xl px-7 text-[14px] bg-blue-700 hover:bg-blue-700">
+                                <Button className="rounded-xl px-7 text-[14px] bg-blue-700 hover:bg-blue-700 cursor-pointer">
                                     Login
                                 </Button>
                             </Link>
@@ -73,7 +73,7 @@ const Navbar = async () => {
                 <div className="md:hidden">
                     <Sheet>
                         <SheetTrigger asChild>
-                            <Button variant="outline" className="rounded-lg border-gray-300">
+                            <Button variant="outline" className="rounded-lg border-gray-300 cursor-pointer">
                                 <Menu />
                             </Button>
                         </SheetTrigger>
@@ -107,14 +107,14 @@ const Navbar = async () => {
                                             <Link href="/register">
                                                 <Button
                                                     variant="outline"
-                                                    className="w-full rounded-xl border-blue-600 text-blue-600 hover:bg-blue-50"
+                                                    className="w-full rounded-xl border-blue-600 text-blue-600 hover:bg-blue-50 cursor-pointer"
                                                 >
                                                     Register
                                                 </Button>
                                             </Link>
 
                                             <Link href="/login">
-                                                <Button className="w-full rounded-xl bg-blue-600 hover:bg-blue-700">
+                                                <Button className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 cursor-pointer">
                                                     Login
                                                 </Button>
                                             </Link>

@@ -38,7 +38,7 @@ export default function PaymentStep({ bookingId }: { bookingId: string }) {
 
                 <Button
                     size="lg"
-                    className="w-full"
+                    className="w-full cursor-pointer"
                     onClick={handlePayment}
                     disabled={loading}
                 >

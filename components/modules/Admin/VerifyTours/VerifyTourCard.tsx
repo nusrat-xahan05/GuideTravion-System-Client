@@ -125,7 +125,7 @@ export default function VerifyTourCard({ tour }: TourCardProps) {
                     {/* Buttons */}
                     <div className="flex justify-end gap-2">
                         <Link href={`/admin/dashboard/verify-tours/${tour.slug}`}>
-                            <Button size="sm" variant="outline" className="bg-black text-white flex items-center gap-1">
+                            <Button size="sm" variant="outline" className="bg-black text-white flex items-center gap-1 cursor-pointer">
                                 <Eye className="w-4 h-4" /> View & Update
                             </Button>
                         </Link>

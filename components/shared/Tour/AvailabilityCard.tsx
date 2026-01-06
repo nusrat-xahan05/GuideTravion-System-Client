@@ -89,7 +89,7 @@ export default function AvailabilityCard({ tour, user }: AvailabilityCardProps) 
             </div>
 
             <Button
-                className="w-full"
+                className="w-full cursor-pointer"
                 onClick={handleCheck}
                 disabled={loading}
             >

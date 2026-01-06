@@ -21,13 +21,13 @@ export default function BookingCancelPage() {
 
             <div className="mt-8 flex justify-center gap-4">
                 <Link href="/">
-                    <Button variant="outline">
+                    <Button variant="outline" className="cursor-pointer">
                         Browse Tours
                     </Button>
                 </Link>
 
                 <Link href="/dashboard/bookings">
-                    <Button>
+                    <Button className="cursor-pointer">
                         Resume Payment
                     </Button>
                 </Link>

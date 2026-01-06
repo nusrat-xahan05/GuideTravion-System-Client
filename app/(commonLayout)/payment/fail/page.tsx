@@ -21,13 +21,13 @@ export default function BookingFailPage() {
 
             <div className="mt-8 flex justify-center gap-4">
                 <Link href="/">
-                    <Button variant="outline">
+                    <Button variant="outline" className="cursor-pointer">
                         Go Home
                     </Button>
                 </Link>
 
                 <Link href="/dashboard/bookings">
-                    <Button>
+                    <Button className="cursor-pointer">
                         Retry Payment
                     </Button>
                 </Link>

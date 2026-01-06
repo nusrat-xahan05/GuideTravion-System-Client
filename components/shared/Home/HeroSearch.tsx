@@ -39,7 +39,7 @@ export const HeroSearch = () => {
             <Button
                 onClick={handleSearch}
                 disabled={isPending}
-                className="px-5 bg-primary hover:bg-blue-800 flex items-center gap-2 font-semibold"
+                className="px-5 bg-primary hover:bg-blue-800 flex items-center gap-2 font-semibold cursor-pointer"
             >
                 <Search size={18} />
                 Search

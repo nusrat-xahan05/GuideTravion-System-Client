@@ -261,6 +261,7 @@ const GuideVerifyDialog = ({ open, onClose, onSuccess, guide }: IGuideVerifyDial
                     <div className="flex justify-end gap-2 pt-4 border-t">
                         <Button
                             type="button"
+                            className="cursor-pointer"
                             variant="outline"
                             disabled={pending}
                             onClick={onClose}
@@ -268,7 +269,7 @@ const GuideVerifyDialog = ({ open, onClose, onSuccess, guide }: IGuideVerifyDial
                             Cancel
                         </Button>
 
-                        <Button type="submit" disabled={pending}>
+                        <Button className="cursor-pointer" type="submit" disabled={pending}>
                             {pending ? "Saving..." : "Update Status"}
                         </Button>
                     </div>

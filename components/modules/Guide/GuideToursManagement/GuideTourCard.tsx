@@ -166,7 +166,7 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
                     {/* Buttons */}
                     <div className="flex justify-end gap-2">
                         <Link href={`/guide/dashboard/tours-management/${tour.slug}`}>
-                            <Button size="sm" variant="outline" className="flex items-center gap-1">
+                            <Button size="sm" variant="outline" className="flex items-center gap-1 cursor-pointer">
                                 <Eye className="w-4 h-4" /> View
                             </Button>
                         </Link>
@@ -179,7 +179,7 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
                         <Button
                             size="sm"
                             variant="secondary"
-                            className="flex items-center gap-1"
+                            className="flex items-center gap-1 cursor-pointer"
                             onClick={() => setEditingTour(tour)}
                         >
                             <PenSquare className="w-4 h-4" /> Edit
@@ -188,7 +188,7 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
                         <Button
                             size="sm"
                             variant="destructive"
-                            className="flex items-center gap-1"
+                            className="flex items-center gap-1 cursor-pointer"
                             onClick={() => onDelete?.(tour._id as string)}
                         >
                             <Trash2 className="w-4 h-4" /> Delete

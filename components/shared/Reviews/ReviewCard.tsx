@@ -51,7 +51,7 @@ export default function ReviewCard({ review }: { review: IReview }) {
             {(review.review as string).length > 120 && (
                 <button
                     onClick={() => setExpanded(!expanded)}
-                    className="mt-2 text-sm text-primary font-medium"
+                    className="mt-2 text-sm text-primary font-medium cursor-pointer"
                 >
                     {expanded ? "Show less" : "Read more"}
                 </button>

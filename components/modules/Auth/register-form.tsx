@@ -130,7 +130,7 @@ export default function RegisterForm({ action, role }: RegisterFormProps) {
 
             <FieldGroup className="mt-4">
                 <Field>
-                    <Button type="submit" disabled={isPending}>
+                    <Button className="cursor-pointer" type="submit" disabled={isPending}>
                         {isPending ? "Registering..." : "Register"}
                     </Button>
                     <FieldDescription className="px-6 text-center mt-2">

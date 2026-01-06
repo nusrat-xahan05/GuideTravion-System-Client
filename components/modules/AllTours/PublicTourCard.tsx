@@ -49,7 +49,7 @@ export default function PublicTourCard({ tour, wishlistIds, user }: Props) {
                     {/* CTA */}
                     <div className="flex items-end">
                         <Link href={`/tour/${tour.slug}`}>
-                            <Button>View Details</Button>
+                            <Button className="cursor-pointer">View Details</Button>
                         </Link>
                     </div>
                 </div>

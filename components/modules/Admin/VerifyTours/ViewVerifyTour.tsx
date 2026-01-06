@@ -191,7 +191,7 @@ export default function ViewVerifyTour({ tour }: TourDetailsViewProps) {
                                     </SelectContent>
                                 </Select>
 
-                                <Button className="w-full" disabled={pending}>
+                                <Button className="w-full cursor-pointer" disabled={pending}>
                                     {pending ? "Updating..." : "Update Status"}
                                 </Button>
                             </form>

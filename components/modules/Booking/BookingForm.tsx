@@ -101,7 +101,7 @@ export default function BookingForm({ tour, startDate, endDate, }: {
                 />
             </div>
 
-            <Button size="lg" className="w-full" disabled={isPending}>
+            <Button size="lg" className="w-full cursor-pointer" disabled={isPending}>
                 {isPending ? "Processing..." : "Continue to Payment"}
             </Button>
         </form>

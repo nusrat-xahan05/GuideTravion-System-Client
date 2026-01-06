@@ -84,7 +84,7 @@ export default function BookingReviewForm({ booking }: { booking: IBooking }) {
                 />
             </div>
 
-            <Button disabled={isPending} className="w-full">
+            <Button disabled={isPending} className="w-full cursor-pointer">
                 {isPending ? "Submitting..." : "Submit Review"}
             </Button>
         </form>
