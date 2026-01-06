@@ -161,7 +161,37 @@ export const adminNavItems: NavSection[] = [
                 badge: "pending",
             }
         ],
-    }
+    },
+    {
+        title: "Bookings",
+        items: [
+            {
+                title: "Upcoming Bookings",
+                href: "/admin/dashboard/upcoming-booked-tours",
+                icon: "CalendarClock",
+                roles: [TUserRole.ADMIN],
+            },
+            {
+                title: "Ongoing Bookings",
+                href: "/admin/dashboard/active-booked-tours",
+                icon: "PlayCircle",
+                roles: [TUserRole.ADMIN],
+                badge: "live",
+            },
+            {
+                title: "Completed Bookings",
+                href: "/admin/dashboard/completed-booked-tours",
+                icon: "CircleCheckBig",
+                roles: [TUserRole.ADMIN],
+            },
+            {
+                title: "Cancelled Bookings",
+                href: "/admin/dashboard/cancelled-booked-tours",
+                icon: "XCircle",
+                roles: [TUserRole.ADMIN],
+            },
+        ],
+    },
 ];
 
 
