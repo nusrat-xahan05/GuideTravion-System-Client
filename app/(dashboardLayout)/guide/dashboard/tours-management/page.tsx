@@ -29,7 +29,7 @@ const GuideToursManagementPage = async ({ searchParams, }: { searchParams: Promi
             <GuideTourFilters />
 
             <Suspense fallback={<TourCardSkeleton items={8} />}>
-                <GuideToursView tours={toursResult.data} />
+                <GuideToursView tours={toursResult?.data} />
                 <GuideTourPagination
                     currentPage={toursResult?.meta?.page || 1}
                     totalPages={totalPages}

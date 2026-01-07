@@ -7,11 +7,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { DollarSign, MapPin, Eye, PenSquare, Trash2, Star, CalendarDays, Users, BadgeCheck, Hourglass } from "lucide-react";
 import { ITour, TTourStatusByAdmin } from "@/types/tour.interface";
-import { useActionState, useEffect, useState } from "react";
-import { sendTourVerificationRequest } from "@/services/user/tour.services";
+import { startTransition, useActionState, useEffect, useRef, useState } from "react";
+import { deleteTourBySlug, sendTourVerificationRequest } from "@/services/user/tour.services";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import GuideEditTourDialog from "./GuideEditTourDialog";
+import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDialog";
 
 
 interface TourCardProps {
@@ -28,8 +29,12 @@ const StatusIcons: Record<string, any> = {
 export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
     const router = useRouter();
     const [editingTour, setEditingTour] = useState<Partial<ITour> | null>(null);
+
     const [verifyState, verifyTour, isVerifying] = useActionState(
         sendTourVerificationRequest, null);
+
+    const [deletingTour, setDeletingTour] = useState<Partial<ITour> | null>(null);
+    const [deleteState, deleteTourAction, isDeleting] = useActionState(deleteTourBySlug, null);
 
 
     useEffect(() => {
@@ -45,6 +50,18 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
 
     const canSendVerifyReq = tour.statusByAdmin === TTourStatusByAdmin.REQ_SEND
     // && guide.isVerifiedByAdmin;
+
+
+    useEffect(() => {
+        if (!deleteState) return;
+
+        if (deleteState.success) {
+            toast.success(deleteState.message || "Tour deleted successfully");
+            router.refresh();
+        } else {
+            toast.error(deleteState.message || "Failed to delete tour");
+        }
+    }, [deleteState, router]);
 
 
     return (
@@ -171,11 +188,6 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
                             </Button>
                         </Link>
 
-                        {/* <Link href={`/guide/dashboard/tours-management/edit-tour/${tour.slug}`}>
-                            <Button size="sm" variant="secondary" className="flex items-center gap-1">
-                                <PenSquare className="w-4 h-4" /> Edit
-                            </Button>
-                        </Link> */}
                         <Button
                             size="sm"
                             variant="secondary"
@@ -185,11 +197,19 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
                             <PenSquare className="w-4 h-4" /> Edit
                         </Button>
 
-                        <Button
+                        {/* <Button
                             size="sm"
                             variant="destructive"
                             className="flex items-center gap-1 cursor-pointer"
                             onClick={() => onDelete?.(tour._id as string)}
+                        >
+                            <Trash2 className="w-4 h-4" /> Delete
+                        </Button> */}
+                        <Button
+                            size="sm"
+                            variant="destructive"
+                            className="flex items-center gap-1 cursor-pointer"
+                            onClick={() => setDeletingTour(tour)}
                         >
                             <Trash2 className="w-4 h-4" /> Delete
                         </Button>
@@ -208,6 +228,29 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
                     tour={editingTour}
                 />
             )}
+
+            {/* Delete Confirmation Dialog */}
+            <DeleteConfirmationDialog
+                open={!!deletingTour}
+                onOpenChange={(open) => !open && setDeletingTour(null)}
+                isDeleting={isDeleting}
+                title="Delete Tour"
+                description={`Are you sure you want to delete "${deletingTour?.title}"?`}
+                // onConfirm={() => {
+                //     setDeletingTour(null);
+                //     const formData = new FormData();
+                //     formData.append("slug", deletingTour!.slug!);
+                //     deleteTourAction(formData);
+                // }}
+                onConfirm={() => {
+                    startTransition(() => {
+                        setDeletingTour(null);
+                        const formData = new FormData();
+                        formData.append("slug", deletingTour!.slug!);
+                        deleteTourAction(formData);
+                    });
+                }}
+            />
         </div>
     );
 }

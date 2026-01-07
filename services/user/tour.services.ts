@@ -267,6 +267,25 @@ export async function getTourBySlug(slug?: string) {
 }
 
 
+export async function deleteTourBySlug(_prevState: any, formData: FormData) {
+    const slug = formData.get("slug") as string;
+
+    try {
+        const res = await serverFetch.delete(`/tour/${slug}`);
+        const result = await res.json();
+
+        revalidateTag("tours-list", { expire: 0 });
+        return result;
+    } catch (error: any) {
+        console.log(error);
+        return {
+            success: false,
+            message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
+        };
+    }
+}
+
+
 export async function sendTourVerificationRequest(_prevState: any, formData: FormData) {
     try {
         const slug = formData.get("slug") as string;
