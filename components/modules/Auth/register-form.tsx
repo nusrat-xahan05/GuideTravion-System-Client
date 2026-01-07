@@ -10,6 +10,8 @@ import { countries } from "@/constants/countries";
 import { ActionResponse } from "@/types/response.interface";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { TUserRole } from "@/types/user.interface";
+import { Eye, EyeOff } from "lucide-react";
+
 
 interface RegisterFormProps {
     action: (formData: FormData) => Promise<ActionResponse>;
@@ -18,6 +20,7 @@ interface RegisterFormProps {
 
 export default function RegisterForm({ action, role }: RegisterFormProps) {
     const [state, setState] = useState<ActionResponse | null>(null);
+    const [showPassword, setShowPassword] = useState(false);
     const [isPending, setIsPending] = useState(false);
     const [phone, setPhone] = useState("");
 
@@ -80,13 +83,57 @@ export default function RegisterForm({ action, role }: RegisterFormProps) {
 
                 <Field>
                     <FieldLabel htmlFor="password">Password</FieldLabel>
-                    <Input id="password" name="password" type="password" />
+
+                    <div className="relative">
+                        <Input
+                            id="password"
+                            name="password"
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Enter your password"
+                            className="pr-10"
+                        />
+
+                        <div
+                            onClick={() => setShowPassword(prev => !prev)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2"
+                            aria-label={showPassword ? "Hide password" : "Show password"}
+                        >
+                            {showPassword ? (
+                                <Eye className="h-4 w-4" />
+                            ) : (
+                                <EyeOff className="h-4 w-4" />
+                            )}
+                        </div>
+                    </div>
+
                     <InputFieldError field="password" state={state} />
                 </Field>
 
                 <Field>
                     <FieldLabel htmlFor="confirmPassword">Confirm Password</FieldLabel>
-                    <Input id="confirmPassword" name="confirmPassword" type="password" />
+
+                    <div className="relative">
+                        <Input
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Confirm your password"
+                            className="pr-10"
+                        />
+
+                        <div
+                            onClick={() => setShowPassword(prev => !prev)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2"
+                            aria-label={showPassword ? "Hide password" : "Show password"}
+                        >
+                            {showPassword ? (
+                                <Eye className="h-4 w-4" />
+                            ) : (
+                                <EyeOff className="h-4 w-4" />
+                            )}
+                        </div>
+                    </div>
+
                     <InputFieldError field="confirmPassword" state={state} />
                 </Field>
 

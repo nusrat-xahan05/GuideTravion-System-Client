@@ -1,5 +1,5 @@
 "use client";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 import Link from "next/link";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
@@ -7,10 +7,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import InputFieldError from "@/components/shared/Form/InputFieldError";
 import { userLogin } from "@/services/auth/userLogin";
+import { Eye, EyeOff } from "lucide-react";
 
 
 const LoginForm = ({ redirect }: { redirect?: string }) => {
     const [state, formAction, isPending] = useActionState(userLogin, null);
+    const [showPassword, setShowPassword] = useState(false);
+
 
     useEffect(() => {
         if (state && !state.success && state.message) {
@@ -39,13 +42,29 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                     {/* Password */}
                     <Field>
                         <FieldLabel htmlFor="password">Password</FieldLabel>
-                        <Input
-                            id="password"
-                            name="password"
-                            type="password"
-                            placeholder="Enter your password"
-                        //   required
-                        />
+
+                        <div className="relative">
+                            <Input
+                                id="password"
+                                name="password"
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Enter your password"
+                                className="pr-10"
+                            />
+
+                            <div
+                                onClick={() => setShowPassword(prev => !prev)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2"
+                                aria-label={showPassword ? "Hide password" : "Show password"}
+                            >
+                                {showPassword ? (
+                                    <Eye className="h-4 w-4" />
+                                ) : (
+                                    <EyeOff className="h-4 w-4" />
+                                )}
+                            </div>
+                        </div>
+
                         <InputFieldError field="password" state={state} />
                     </Field>
                 </div>
@@ -58,7 +77,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                         <FieldDescription className="px-6 text-center">
                             Don&apos;t have an account?{" "}
                             <Link href="/register/tourist" className="text-blue-600 hover:underline">
-                                 Sign up
+                                Sign up
                             </Link>
                         </FieldDescription>
                     </Field>
