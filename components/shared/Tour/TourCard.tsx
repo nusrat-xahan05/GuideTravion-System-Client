@@ -187,14 +187,14 @@ export default function TourCard({ tour, onDelete, userInfo }: TourCardProps) {
                             <PenSquare className="w-4 h-4" /> Edit
                         </Button>
 
-                        <Button
+                        {/* <Button
                             size="sm"
                             variant="destructive"
                             className="flex items-center gap-1 cursor-pointer"
                             onClick={() => onDelete?.(tour._id as string)}
                         >
                             <Trash2 className="w-4 h-4" /> Delete
-                        </Button>
+                        </Button> */}
                     </div>
                 </div>
             </div>

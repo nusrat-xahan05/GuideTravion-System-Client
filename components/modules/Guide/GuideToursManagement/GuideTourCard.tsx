@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { DollarSign, MapPin, Eye, PenSquare, Trash2, Star, CalendarDays, Users, BadgeCheck, Hourglass } from "lucide-react";
 import { ITour, TTourStatusByAdmin } from "@/types/tour.interface";
-import { startTransition, useActionState, useEffect, useRef, useState } from "react";
+import { startTransition, useActionState, useEffect, useState } from "react";
 import { deleteTourBySlug, sendTourVerificationRequest } from "@/services/user/tour.services";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -17,7 +17,7 @@ import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDial
 
 interface TourCardProps {
     tour: Partial<ITour>;
-    onDelete?: (id: string) => void;
+    // onDelete?: (id: string) => void;
 }
 
 const StatusIcons: Record<string, any> = {
@@ -26,7 +26,7 @@ const StatusIcons: Record<string, any> = {
 };
 
 
-export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
+export default function GuideTourCard({ tour }: TourCardProps) {
     const router = useRouter();
     const [editingTour, setEditingTour] = useState<Partial<ITour> | null>(null);
 
@@ -197,14 +197,6 @@ export default function GuideTourCard({ tour, onDelete }: TourCardProps) {
                             <PenSquare className="w-4 h-4" /> Edit
                         </Button>
 
-                        {/* <Button
-                            size="sm"
-                            variant="destructive"
-                            className="flex items-center gap-1 cursor-pointer"
-                            onClick={() => onDelete?.(tour._id as string)}
-                        >
-                            <Trash2 className="w-4 h-4" /> Delete
-                        </Button> */}
                         <Button
                             size="sm"
                             variant="destructive"

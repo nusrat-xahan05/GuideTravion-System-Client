@@ -22,8 +22,7 @@ export default function BookingReviewForm({ booking }: { booking: IBooking }) {
 
     const isEligible =
         booking.status === "COMPLETED" &&
-        booking.paymentStatus === "PAID" &&
-        !booking.isReviewed;
+        booking.paymentStatus === "PAID";
 
     const [state, formAction, isPending] = useActionState(
         createReviewAction,
@@ -43,6 +42,14 @@ export default function BookingReviewForm({ booking }: { booking: IBooking }) {
         return (
             <div className="border rounded-md p-4 text-sm text-muted-foreground bg-muted">
                 You can submit a review only after the tour is completed.
+            </div>
+        );
+    }
+
+    if (booking.isReviewd) {
+        return (
+            <div className="border rounded-md p-4 text-sm text-muted-foreground bg-muted">
+                You have already submitted a review.
             </div>
         );
     }
