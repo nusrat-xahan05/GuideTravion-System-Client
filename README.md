@@ -3,14 +3,14 @@
 ## Project Overview
 GuideTravion is a role-based tour booking platform frontend where tourists can explore tours, book guides, make secure payments, and leave reviews after completing tours. The system is designed to work seamlessly with the GuideTravion Backend API.
 
-This frontend focuses on a clean user experience, role-based access, and a smooth **Booking → Payment → Review** journey.
+This frontend focuses on a clean user experience, role-based access, and a smooth **Booking → Payment → Review&Rating** journey.
 
 ---
 
 ## Tech Stack
 - **Framework:** Next.js (App Router)
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS, ShadCN
 - **Animation:** Framer Motion
 - **State & Data Fetching:** Server Actions + Fetch API
 - **Authentication:** JWT-based (handled via backend)
@@ -24,10 +24,11 @@ This frontend focuses on a clean user experience, role-based access, and a smoot
 ### 1. Role-Based System
 The application supports multiple roles:
 - **Tourist (User)**
+  - Create Wishlist
   - Browse tours
   - Book tours
   - Make payments
-  - Leave reviews after tour completion
+  - Leave reviews and rating after tour completion
 - **Guide**
   - Create and manage tours
   - View bookings related to their tours
@@ -135,7 +136,6 @@ Make sure:
 ---
 
 ## Future Improvements
-- Wishlist functionality
 - Advanced analytics dashboard
 - Push notifications
 - Multi-language support
